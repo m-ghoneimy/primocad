@@ -254,15 +254,19 @@ main {
     overflow: hidden;
     box-shadow: var(--shadow);
     transition: all 0.3s ease;
+}
 
-    text-decoration: none;
+.use-case-card a {
+    text-decoration: none !important;
 }
 
 .use-case-card:hover {
     transform: translateY(-5px);
     box-shadow: var(--shadow-hover);
+}
 
-    text-decoration: none;
+.use-case-card a:hover {
+    text-decoration: none !important;
 }
 
 .use-case-image {
