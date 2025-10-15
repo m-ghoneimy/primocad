@@ -256,6 +256,10 @@ main {
     transition: all 0.3s ease;
 }
 
+.use-case-card * {
+    text-decoration: none !important;
+}
+
 .use-case-card:hover {
     transform: translateY(-5px);
     box-shadow: var(--shadow-hover);
@@ -269,23 +273,17 @@ main {
 
 .use-case-content {
     padding: 1.5rem;
-
-    text-decoration: none !important;
 }
 
 .use-case-title {
     font-size: 1.3rem;
     margin-bottom: 0.5rem;
     color: var(--text-dark);
-
-    text-decoration: none !important;
 }
 
 .use-case-description {
     color: var(--text-light);
     line-height: 1.6;
-
-    text-decoration: none !important;
 }
 
 /* 隐私保护区域 */
