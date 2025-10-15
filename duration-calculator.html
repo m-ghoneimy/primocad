@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activity Duration</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 24px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .section {
+            padding: 24px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group:last-child {
+            margin-bottom: 0;
+        }
+
+        label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #555;
+            margin-bottom: 6px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+            font-family: inherit;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .button-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 12px;
+            padding: 24px;
+        }
+
+        @media (max-width: 600px) {
+            .button-group {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-calculate {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-calculate:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-edit {
+            background: #f0f0f0;
+            color: #666;
+        }
+
+        .btn-edit:hover:not(:disabled) {
+            background: #e0e0e0;
+        }
+
+        .btn-help {
+            background: #3498db;
+            color: white;
+        }
+
+        .btn-help:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .result-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .result-label {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-bottom: 8px;
+        }
+
+        .result-value {
+            font-size: 36px;
+            font-weight: 700;
+        }
+
+        .summary-section {
+            padding: 24px;
+            background: #f9f9f9;
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .summary-item:last-child {
+            border-bottom: none;
+        }
+
+        .summary-label {
+            font-weight: 500;
+            color: #666;
+        }
+
+        .summary-value {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .error-message {
+            color: #e74c3c;
+            font-size: 12px;
+            margin-top: 4px;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        input.error, select.error {
+            border-color: #e74c3c;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                max-width: 100%;
+            }
+
+            .header {
+                font-size: 20px;
+                padding: 20px;
+            }
+
+            .section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            Activity Duration
+        </div>
+
+        <!-- Global Settings -->
+        <div class="section">
+            <div class="section-title">
+                Global Settings
+            </div>
+            <div class="form-group">
+                <label>
+                    Quantity Unit
+                </label>
+                <select id="quantityUnit">
+                    <option value="Cubic Meter">Cubic Meter (m³)</option>
+                    <option value="Square Meter">Square Meter (m²)</option>
+                    <option value="Meter">Meter (m)</option>
+                    <option value="Ton">Ton</option>
+                    <option value="Unit">Unit</option>
+                    <option value="Custom">Custom</option>
+                </select>
+            </div>
+            <div class="form-group" id="customQuantityGroup" style="display: none;">
+                <label>
+                    Custom Quantity Unit
+                </label>
+                <input type="text" id="customQuantityUnit" placeholder="Enter custom unit (e.g., kg, pieces)">
+            </div>
+            <div class="form-group">
+                <label>
+                    Time Unit
+                </label>
+                <select id="timeUnit">
+                    <option value="Hour">Hour</option>
+                    <option value="Day" selected>Day</option>
+                    <option value="Week">Week</option>
+                    <option value="Month">Month</option>
+                    <option value="Custom">Custom</option>
+                </select>
+            </div>
+            <div class="form-group" id="customTimeGroup" style="display: none;">
+                <label>
+                    Custom Time Unit
+                </label>
+                <input type="text" id="customTimeUnit" placeholder="Enter custom unit (e.g., shift, cycle)">
+            </div>
+            <div class="form-group">
+                <label>
+                    Decimals
+                </label>
+                <select id="decimals">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2" selected>2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Activity Data -->
+        <div class="section">
+            <div class="section-title">
+                Activity Data
+            </div>
+            <div class="form-group">
+                <label>
+                    Name
+                </label>
+                <input type="text" id="activityName" placeholder="Activity name or code" value="PC">
+            </div>
+            <div class="form-group">
+                <label>
+                    Description
+                </label>
+                <textarea id="activityDescription" placeholder="Activity description"></textarea>
+            </div>
+            <div class="form-group">
+                <label>
+                    <span id="productionQuantityLabel">Production Quantity</span>
+                </label>
+                <input type="number" id="productionQuantity" value="100.00" min="0" step="0.01">
+                <div class="error-message" id="quantityError">Please enter a valid positive number</div>
+            </div>
+            <div class="form-group">
+                <label>
+                    <span id="producerRateLabel">Producer Rate</span>
+                </label>
+                <input type="number" id="producerRate" value="10.00" min="0" step="0.01">
+                <div class="error-message" id="rateError">Please enter a valid positive number</div>
+            </div>
+            <div class="form-group">
+                <label>
+                    Number of Producers
+                </label>
+                <input type="number" id="numProducers" value="1" min="1" step="1">
+                <div class="error-message" id="producersError">Please enter a valid positive integer</div>
+            </div>
+            <div class="form-group">
+                <label>
+                    Efficiency (0.01 - 1.00)
+                </label>
+                <input type="number" id="efficiency" value="1.00" min="0.01" max="1" step="0.01">
+                <div class="error-message" id="efficiencyError">Efficiency must be between 0.01 and 1.00</div>
+            </div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="button-group">
+            <button class="btn-calculate" id="calculateBtn">Calculate Duration</button>
+            <button class="btn-edit" id="editBtn" disabled>Edit Data</button>
+            <button class="btn-help" id="helpBtn">Help</button>
+        </div>
+
+        <!-- Calculated Duration -->
+        <div class="result-section" id="resultSection" style="display: none;">
+            <div class="result-label">Calculated Duration</div>
+            <div class="result-value" id="resultValue">-</div>
+        </div>
+
+        <!-- Summary -->
+        <div class="summary-section" id="summarySection" style="display: none;">
+            <div class="section-title">Summary</div>
+            <div class="summary-item">
+                <span class="summary-label">Activity Name:</span>
+                <span class="summary-value" id="summaryName">-</span>
+            </div>
+            <div class="summary-item">
+                <span class="summary-label">Production Quantity:</span>
+                <span class="summary-value" id="summaryQuantity">-</span>
+            </div>
+            <div class="summary-item">
+                <span class="summary-label">Producer Rate:</span>
+                <span class="summary-value" id="summaryRate">-</span>
+            </div>
+            <div class="summary-item">
+                <span class="summary-label">Number of Producers:</span>
+                <span class="summary-value" id="summaryProducers">-</span>
+            </div>
+            <div class="summary-item">
+                <span class="summary-label">Efficiency:</span>
+                <span class="summary-value" id="summaryEfficiency">-</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/script.js"></script>
+    
+    <script>
+        // Get all DOM elements
+        const calculateBtn = document.getElementById('calculateBtn');
+        const editBtn = document.getElementById('editBtn');
+        const helpBtn = document.getElementById('helpBtn');
+        const resultSection = document.getElementById('resultSection');
+        const summarySection = document.getElementById('summarySection');
+        const resultValue = document.getElementById('resultValue');
+
+        // Input fields
+        const inputs = {
+            quantityUnit: document.getElementById('quantityUnit'),
+            timeUnit: document.getElementById('timeUnit'),
+            decimals: document.getElementById('decimals'),
+            activityName: document.getElementById('activityName'),
+            activityDescription: document.getElementById('activityDescription'),
+            productionQuantity: document.getElementById('productionQuantity'),
+            producerRate: document.getElementById('producerRate'),
+            numProducers: document.getElementById('numProducers'),
+            efficiency: document.getElementById('efficiency'),
+            customQuantityUnit: document.getElementById('customQuantityUnit'),
+            customTimeUnit: document.getElementById('customTimeUnit')
+        };
+
+        // Custom unit groups
+        const customQuantityGroup = document.getElementById('customQuantityGroup');
+        const customTimeGroup = document.getElementById('customTimeGroup');
+
+        // Label elements
+        const productionQuantityLabel = document.getElementById('productionQuantityLabel');
+        const producerRateLabel = document.getElementById('producerRateLabel');
+
+        // Error message elements
+        const errors = {
+            quantity: document.getElementById('quantityError'),
+            rate: document.getElementById('rateError'),
+            producers: document.getElementById('producersError'),
+            efficiency: document.getElementById('efficiencyError')
+        };
+
+        // Get current quantity unit (handles custom units)
+        function getQuantityUnit() {
+            if (inputs.quantityUnit.value === 'Custom') {
+                return inputs.customQuantityUnit.value.trim() || 'unit';
+            }
+            return inputs.quantityUnit.value;
+        }
+
+        // Get quantity unit label (short form for display)
+        function getQuantityUnitLabel() {
+            const unit = inputs.quantityUnit.value;
+            if (unit === 'Custom') {
+                return inputs.customQuantityUnit.value.trim() || 'unit';
+            }
+            const labels = {
+                'Cubic Meter': 'm³',
+                'Square Meter': 'm²',
+                'Meter': 'm',
+                'Ton': 'ton',
+                'Unit': 'unit'
+            };
+            return labels[unit] || unit;
+        }
+
+        // Get current time unit (handles custom units)
+        function getTimeUnit() {
+            if (inputs.timeUnit.value === 'Custom') {
+                return inputs.customTimeUnit.value.trim() || 'period';
+            }
+            return inputs.timeUnit.value;
+        }
+
+        // Get time unit label (lowercase for display)
+        function getTimeUnitLabel() {
+            return getTimeUnit().toLowerCase();
+        }
+
+        // Update all dynamic labels
+        function updateLabels() {
+            const quantityUnit = getQuantityUnit();
+            const timeUnit = getTimeUnit();
+            
+            // Update Production Quantity label
+            productionQuantityLabel.textContent = `Production Quantity (${getQuantityUnitLabel()})`;
+            
+            // Update Producer Rate label
+            producerRateLabel.textContent = `Producer Rate (${getQuantityUnitLabel()}/${getTimeUnitLabel()} per producer)`;
+        }
+
+        // Toggle custom quantity unit input
+        function toggleCustomQuantityUnit() {
+            if (inputs.quantityUnit.value === 'Custom') {
+                customQuantityGroup.style.display = 'block';
+            } else {
+                customQuantityGroup.style.display = 'none';
+            }
+            updateLabels();
+        }
+
+        // Toggle custom time unit input
+        function toggleCustomTimeUnit() {
+            if (inputs.timeUnit.value === 'Custom') {
+                customTimeGroup.style.display = 'block';
+            } else {
+                customTimeGroup.style.display = 'none';
+            }
+            updateLabels();
+        }
+
+        // Initialize labels on page load
+        updateLabels();
+
+        // Validation function
+        function validateInputs() {
+            let isValid = true;
+
+            // Clear previous errors
+            Object.values(errors).forEach(error => error.classList.remove('show'));
+            Object.values(inputs).forEach(input => {
+                if (input.classList) input.classList.remove('error');
+            });
+
+            // Validate production quantity
+            const quantity = parseFloat(inputs.productionQuantity.value);
+            if (isNaN(quantity) || quantity <= 0) {
+                errors.quantity.classList.add('show');
+                inputs.productionQuantity.classList.add('error');
+                isValid = false;
+            }
+
+            // Validate producer rate
+            const rate = parseFloat(inputs.producerRate.value);
+            if (isNaN(rate) || rate <= 0) {
+                errors.rate.classList.add('show');
+                inputs.producerRate.classList.add('error');
+                isValid = false;
+            }
+
+            // Validate number of producers
+            const producers = parseInt(inputs.numProducers.value);
+            if (isNaN(producers) || producers < 1 || !Number.isInteger(producers)) {
+                errors.producers.classList.add('show');
+                inputs.numProducers.classList.add('error');
+                isValid = false;
+            }
+
+            // Validate efficiency
+            const efficiency = parseFloat(inputs.efficiency.value);
+            if (isNaN(efficiency) || efficiency < 0.01 || efficiency > 1) {
+                errors.efficiency.classList.add('show');
+                inputs.efficiency.classList.add('error');
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        // Calculate duration
+        function calculateDuration() {
+            if (!validateInputs()) {
+                return;
+            }
+
+            // Get values
+            const quantity = parseFloat(inputs.productionQuantity.value);
+            const rate = parseFloat(inputs.producerRate.value);
+            const producers = parseInt(inputs.numProducers.value);
+            const efficiency = parseFloat(inputs.efficiency.value);
+            const decimals = parseInt(inputs.decimals.value);
+
+            // Calculate duration with selected decimal places
+            const duration = quantity / (rate * producers * efficiency);
+            const roundedDuration = parseFloat(duration.toFixed(decimals));
+
+            // Get unit labels
+            const quantityUnitLabel = getQuantityUnitLabel();
+            const timeUnitLabel = getTimeUnitLabel();
+
+            // Display result
+            const displayDuration = roundedDuration.toFixed(decimals);
+            resultValue.textContent = `${displayDuration} ${timeUnitLabel}${parseFloat(displayDuration) !== 1 ? 's' : ''}`;
+            resultSection.style.display = 'block';
+
+            // Update summary with proper decimal formatting
+            document.getElementById('summaryName').textContent = inputs.activityName.value || 'N/A';
+            document.getElementById('summaryQuantity').textContent = `${parseFloat(quantity.toFixed(decimals)).toFixed(decimals)} ${quantityUnitLabel}`;
+            document.getElementById('summaryRate').textContent = `${parseFloat(rate.toFixed(decimals)).toFixed(decimals)} ${quantityUnitLabel}/${timeUnitLabel}`;
+            document.getElementById('summaryProducers').textContent = producers;
+            document.getElementById('summaryEfficiency').textContent = `${parseFloat((efficiency * 100).toFixed(decimals)).toFixed(decimals)}%`;
+            summarySection.style.display = 'block';
+
+            // Toggle buttons
+            calculateBtn.disabled = true;
+            editBtn.disabled = false;
+
+            // Disable inputs
+            Object.values(inputs).forEach(input => input.disabled = true);
+        }
+
+        // Edit data
+        function editData() {
+            // Hide results
+            resultSection.style.display = 'none';
+            summarySection.style.display = 'none';
+
+            // Enable inputs
+            Object.values(inputs).forEach(input => input.disabled = false);
+
+            // Toggle buttons
+            calculateBtn.disabled = false;
+            editBtn.disabled = true;
+
+            // Clear errors
+            Object.values(errors).forEach(error => error.classList.remove('show'));
+            Object.values(inputs).forEach(input => {
+                if (input.classList) input.classList.remove('error');
+            });
+        }
+
+        // Event listeners
+        calculateBtn.addEventListener('click', calculateDuration);
+        editBtn.addEventListener('click', editData);
+        helpBtn.addEventListener('click', showHelp);
+
+        // Listen for unit changes
+        inputs.quantityUnit.addEventListener('change', toggleCustomQuantityUnit);
+        inputs.timeUnit.addEventListener('change', toggleCustomTimeUnit);
+        
+        // Update labels when custom units are typed
+        inputs.customQuantityUnit.addEventListener('input', updateLabels);
+        inputs.customTimeUnit.addEventListener('input', updateLabels);
+
+        // Show help information
+        function showHelp() {
+            alert(`Activity Duration Calculator - Help
+
+FORMULA:
+Duration = Production Quantity / (Producer Rate × Number of Producers × Efficiency)
+
+FIELDS:
+
+Global Settings:
+• Quantity Unit: Select the unit for measuring production quantity (m³, m², m, ton, unit, or custom)
+• Time Unit: Select the unit for measuring time duration (hour, day, week, month, or custom)
+
+Activity Data:
+• Name: Enter the activity name or identifier code
+• Description: Provide a detailed description of the activity
+• Production Quantity: Total quantity to be produced for this activity
+• Producer Rate: Production rate per time unit per single producer
+• Number of Producers: Total number of producers working on this activity
+• Efficiency: Production efficiency factor (0.01 to 1.00, where 1.00 = 100% efficient)
+
+BUTTONS:
+• Calculate Duration: Runs the calculation and displays the result
+• Edit Data: Allows you to modify inputs after calculation
+• Help: Shows this help information
+
+All numeric values are displayed with 2 decimal places.`);
+        }
+
+        // Add enter key support for calculate
+        document.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && !calculateBtn.disabled) {
+                calculateDuration();
+            }
+        });
+    </script>
+</body>
+</html>
