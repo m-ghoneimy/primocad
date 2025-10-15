@@ -60,8 +60,46 @@ const observer = new IntersectionObserver(function(entries) {
 }, observerOptions);
 
 // 观察所有卡片元素
-document.querySelectorAll('.feature-card, .use-case-card, .testimonial-card').forEach(card => {
+document.querySelectorAll('.feature-card, .use-case-card, .testimonial-card, .faq-item').forEach(card => {
     observer.observe(card);
+});
+
+// FAQ 折叠效果
+const faqQuestions = document.querySelectorAll('.faq-question');
+
+faqQuestions.forEach(question => {
+    question.addEventListener('click', () => {
+        const answer = question.nextElementSibling;
+        const isActive = question.classList.contains('active');
+        
+        // 关闭所有FAQ
+        faqQuestions.forEach(q => {
+            q.classList.remove('active');
+            q.nextElementSibling.classList.remove('active');
+        });
+        
+        // 如果当前FAQ未激活，则激活它
+        if (!isActive) {
+            question.classList.add('active');
+            answer.classList.add('active');
+        }
+    });
+});
+
+// 表单提交处理（如果有表单）
+const ctaButton = document.querySelector('.cta-button');
+const productCta = document.querySelector('.product-cta');
+const productSecondaryCta = document.querySelector('.product-secondary-cta');
+const navCta = document.querySelector('.nav-cta');
+
+[ctaButton, productCta, productSecondaryCta, navCta].forEach(button => {
+    if (button) {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            // 这里可以添加注册或登录的逻辑
+            alert('感谢您的兴趣！注册功能即将推出，敬请期待。');
+        });
+    }
 });
 
 // 页面加载完成后的动画
