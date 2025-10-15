@@ -256,154 +256,157 @@
         </div>
     </nav>
 
-    <!-- calculator -->
-    <div class="container">
-        <div class="header">
-            Activity Duration
-        </div>
+    <!--main-->
+    <main>
+        <!-- calculator -->
+        <div class="container">
+            <div class="header">
+                Activity Duration
+            </div>
 
-        <!-- Global Settings -->
-        <div class="section">
-            <div class="section-title">
-                Global Settings
+            <!-- Global Settings -->
+            <div class="section">
+                <div class="section-title">
+                    Global Settings
+                </div>
+                <div class="form-group">
+                    <label>
+                        Quantity Unit
+                    </label>
+                    <select id="quantityUnit">
+                        <option value="Cubic Meter">Cubic Meter (m³)</option>
+                        <option value="Square Meter">Square Meter (m²)</option>
+                        <option value="Meter">Meter (m)</option>
+                        <option value="Ton">Ton</option>
+                        <option value="Unit">Unit</option>
+                        <option value="Custom">Custom</option>
+                    </select>
+                </div>
+                <div class="form-group" id="customQuantityGroup" style="display: none;">
+                    <label>
+                        Custom Quantity Unit
+                    </label>
+                    <input type="text" id="customQuantityUnit" placeholder="Enter custom unit (e.g., kg, pieces)">
+                </div>
+                <div class="form-group">
+                    <label>
+                        Time Unit
+                    </label>
+                    <select id="timeUnit">
+                        <option value="Hour">Hour</option>
+                        <option value="Day" selected>Day</option>
+                        <option value="Week">Week</option>
+                        <option value="Month">Month</option>
+                        <option value="Custom">Custom</option>
+                    </select>
+                </div>
+                <div class="form-group" id="customTimeGroup" style="display: none;">
+                    <label>
+                        Custom Time Unit
+                    </label>
+                    <input type="text" id="customTimeUnit" placeholder="Enter custom unit (e.g., shift, cycle)">
+                </div>
+                <div class="form-group">
+                    <label>
+                        Decimals
+                    </label>
+                    <select id="decimals">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2" selected>2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                </div>
             </div>
-            <div class="form-group">
-                <label>
-                    Quantity Unit
-                </label>
-                <select id="quantityUnit">
-                    <option value="Cubic Meter">Cubic Meter (m³)</option>
-                    <option value="Square Meter">Square Meter (m²)</option>
-                    <option value="Meter">Meter (m)</option>
-                    <option value="Ton">Ton</option>
-                    <option value="Unit">Unit</option>
-                    <option value="Custom">Custom</option>
-                </select>
+
+            <!-- Activity Data -->
+            <div class="section">
+                <div class="section-title">
+                    Activity Data
+                </div>
+                <div class="form-group">
+                    <label>
+                        Name
+                    </label>
+                    <input type="text" id="activityName" placeholder="Activity name or code" value="PC">
+                </div>
+                <div class="form-group">
+                    <label>
+                        Description
+                    </label>
+                    <textarea id="activityDescription" placeholder="Activity description"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <span id="productionQuantityLabel">Production Quantity</span>
+                    </label>
+                    <input type="number" id="productionQuantity" value="100.00" min="0" step="0.01">
+                    <div class="error-message" id="quantityError">Please enter a valid positive number</div>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <span id="producerRateLabel">Producer Rate</span>
+                    </label>
+                    <input type="number" id="producerRate" value="10.00" min="0" step="0.01">
+                    <div class="error-message" id="rateError">Please enter a valid positive number</div>
+                </div>
+                <div class="form-group">
+                    <label>
+                        Number of Producers
+                    </label>
+                    <input type="number" id="numProducers" value="1" min="1" step="1">
+                    <div class="error-message" id="producersError">Please enter a valid positive integer</div>
+                </div>
+                <div class="form-group">
+                    <label>
+                        Efficiency (0.01 - 1.00)
+                    </label>
+                    <input type="number" id="efficiency" value="1.00" min="0.01" max="1" step="0.01">
+                    <div class="error-message" id="efficiencyError">Efficiency must be between 0.01 and 1.00</div>
+                </div>
             </div>
-            <div class="form-group" id="customQuantityGroup" style="display: none;">
-                <label>
-                    Custom Quantity Unit
-                </label>
-                <input type="text" id="customQuantityUnit" placeholder="Enter custom unit (e.g., kg, pieces)">
+
+            <!-- Buttons -->
+            <div class="button-group">
+                <button class="btn-calculate" id="calculateBtn">Calculate Duration</button>
+                <button class="btn-edit" id="editBtn" disabled>Edit Data</button>
+                <button class="btn-help" id="helpBtn">Help</button>
             </div>
-            <div class="form-group">
-                <label>
-                    Time Unit
-                </label>
-                <select id="timeUnit">
-                    <option value="Hour">Hour</option>
-                    <option value="Day" selected>Day</option>
-                    <option value="Week">Week</option>
-                    <option value="Month">Month</option>
-                    <option value="Custom">Custom</option>
-                </select>
+
+            <!-- Calculated Duration -->
+            <div class="result-section" id="resultSection" style="display: none;">
+                <div class="result-label">Calculated Duration</div>
+                <div class="result-value" id="resultValue">-</div>
             </div>
-            <div class="form-group" id="customTimeGroup" style="display: none;">
-                <label>
-                    Custom Time Unit
-                </label>
-                <input type="text" id="customTimeUnit" placeholder="Enter custom unit (e.g., shift, cycle)">
-            </div>
-            <div class="form-group">
-                <label>
-                    Decimals
-                </label>
-                <select id="decimals">
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2" selected>2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                </select>
+
+            <!-- Summary -->
+            <div class="summary-section" id="summarySection" style="display: none;">
+                <div class="section-title">Summary</div>
+                <div class="summary-item">
+                    <span class="summary-label">Activity Name:</span>
+                    <span class="summary-value" id="summaryName">-</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Production Quantity:</span>
+                    <span class="summary-value" id="summaryQuantity">-</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Producer Rate:</span>
+                    <span class="summary-value" id="summaryRate">-</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Number of Producers:</span>
+                    <span class="summary-value" id="summaryProducers">-</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Efficiency:</span>
+                    <span class="summary-value" id="summaryEfficiency">-</span>
+                </div>
             </div>
         </div>
-
-        <!-- Activity Data -->
-        <div class="section">
-            <div class="section-title">
-                Activity Data
-            </div>
-            <div class="form-group">
-                <label>
-                    Name
-                </label>
-                <input type="text" id="activityName" placeholder="Activity name or code" value="PC">
-            </div>
-            <div class="form-group">
-                <label>
-                    Description
-                </label>
-                <textarea id="activityDescription" placeholder="Activity description"></textarea>
-            </div>
-            <div class="form-group">
-                <label>
-                    <span id="productionQuantityLabel">Production Quantity</span>
-                </label>
-                <input type="number" id="productionQuantity" value="100.00" min="0" step="0.01">
-                <div class="error-message" id="quantityError">Please enter a valid positive number</div>
-            </div>
-            <div class="form-group">
-                <label>
-                    <span id="producerRateLabel">Producer Rate</span>
-                </label>
-                <input type="number" id="producerRate" value="10.00" min="0" step="0.01">
-                <div class="error-message" id="rateError">Please enter a valid positive number</div>
-            </div>
-            <div class="form-group">
-                <label>
-                    Number of Producers
-                </label>
-                <input type="number" id="numProducers" value="1" min="1" step="1">
-                <div class="error-message" id="producersError">Please enter a valid positive integer</div>
-            </div>
-            <div class="form-group">
-                <label>
-                    Efficiency (0.01 - 1.00)
-                </label>
-                <input type="number" id="efficiency" value="1.00" min="0.01" max="1" step="0.01">
-                <div class="error-message" id="efficiencyError">Efficiency must be between 0.01 and 1.00</div>
-            </div>
-        </div>
-
-        <!-- Buttons -->
-        <div class="button-group">
-            <button class="btn-calculate" id="calculateBtn">Calculate Duration</button>
-            <button class="btn-edit" id="editBtn" disabled>Edit Data</button>
-            <button class="btn-help" id="helpBtn">Help</button>
-        </div>
-
-        <!-- Calculated Duration -->
-        <div class="result-section" id="resultSection" style="display: none;">
-            <div class="result-label">Calculated Duration</div>
-            <div class="result-value" id="resultValue">-</div>
-        </div>
-
-        <!-- Summary -->
-        <div class="summary-section" id="summarySection" style="display: none;">
-            <div class="section-title">Summary</div>
-            <div class="summary-item">
-                <span class="summary-label">Activity Name:</span>
-                <span class="summary-value" id="summaryName">-</span>
-            </div>
-            <div class="summary-item">
-                <span class="summary-label">Production Quantity:</span>
-                <span class="summary-value" id="summaryQuantity">-</span>
-            </div>
-            <div class="summary-item">
-                <span class="summary-label">Producer Rate:</span>
-                <span class="summary-value" id="summaryRate">-</span>
-            </div>
-            <div class="summary-item">
-                <span class="summary-label">Number of Producers:</span>
-                <span class="summary-value" id="summaryProducers">-</span>
-            </div>
-            <div class="summary-item">
-                <span class="summary-label">Efficiency:</span>
-                <span class="summary-value" id="summaryEfficiency">-</span>
-            </div>
-        </div>
-    </div>
-
+    </main>
+    
     <!-- footer -->
     <footer>
         <div class="footer-container">
