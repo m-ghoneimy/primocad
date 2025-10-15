@@ -269,6 +269,8 @@ main {
 
 .use-case-content {
     padding: 1.5rem;
+
+    text-decoration: none !important;
 }
 
 .use-case-title {
@@ -282,7 +284,7 @@ main {
 .use-case-description {
     color: var(--text-light);
     line-height: 1.6;
-    
+
     text-decoration: none !important;
 }
 
