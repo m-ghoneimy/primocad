@@ -72,8 +72,6 @@ const navCta = document.querySelector('.nav-cta');
 [ctaButton, heroCta, navCta].forEach(button => {
     button.addEventListener('click', function(e) {
         e.preventDefault();
-        // 这里可以添加注册或登录的逻辑
-        alert('感谢您的兴趣！注册功能即将推出，敬请期待。');
     });
 });
 
