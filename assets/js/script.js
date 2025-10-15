@@ -65,7 +65,7 @@ document.querySelectorAll('.feature-card, .use-case-card, .testimonial-card').fo
 });
 
 // 表单提交处理（如果有表单）
-const ctaButton = document.querySelector('.cta-button');
+/*const ctaButton = document.querySelector('.cta-button');
 const heroCta = document.querySelector('.hero-cta');
 const navCta = document.querySelector('.nav-cta');
 
@@ -73,7 +73,7 @@ const navCta = document.querySelector('.nav-cta');
     button.addEventListener('click', function(e) {
         e.preventDefault();
     });
-});
+});*/
 
 // 页面加载完成后的动画
 window.addEventListener('load', function() {
