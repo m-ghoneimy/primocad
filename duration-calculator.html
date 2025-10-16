@@ -318,12 +318,6 @@
                 </div>
                 <div class="form-group">
                     <label>
-                        Description
-                    </label>
-                    <textarea id="activityDescription" placeholder="Activity description"></textarea>
-                </div>
-                <div class="form-group">
-                    <label>
                         <span id="productionQuantityLabel">Production Quantity</span>
                     </label>
                     <input type="number" id="productionQuantity" min="0.01" step="0.01">
@@ -356,7 +350,7 @@
             <div class="button-group">
                 <button class="btn-calculate" id="calculateBtn">Calculate</button>
                 <button class="btn-edit" id="editBtn" disabled>Edit</button>
-                <button class="btn-help" id="helpBtn">Help</button>
+                <button class="btn-help" id="helpBtn"><a href="duration-calculator-docs.html">Help</a></button>
             </div>
 
             <!-- Calculated Duration -->
@@ -452,7 +446,6 @@
             timeUnit: document.getElementById('timeUnit'),
             decimals: document.getElementById('decimals'),
             activityName: document.getElementById('activityName'),
-            activityDescription: document.getElementById('activityDescription'),
             productionQuantity: document.getElementById('productionQuantity'),
             producerRate: document.getElementById('producerRate'),
             numProducers: document.getElementById('numProducers'),
@@ -659,7 +652,6 @@
         // Event listeners
         calculateBtn.addEventListener('click', calculateDuration);
         editBtn.addEventListener('click', editData);
-        helpBtn.addEventListener('click', showHelp);
 
         // Listen for unit changes
         inputs.quantityUnit.addEventListener('change', toggleCustomQuantityUnit);
@@ -668,35 +660,6 @@
         // Update labels when custom units are typed
         inputs.customQuantityUnit.addEventListener('input', updateLabels);
         inputs.customTimeUnit.addEventListener('input', updateLabels);
-
-        // Show help information
-        function showHelp() {
-            alert(`Activity Duration Calculator - Help
-
-FORMULA:
-Duration = Production Quantity / (Producer Rate × Number of Producers × Efficiency)
-
-FIELDS:
-
-Global Settings:
-• Quantity Unit: Select the unit for measuring production quantity (m³, m², m, ton, unit, or custom)
-• Time Unit: Select the unit for measuring time duration (hour, day, week, month, or custom)
-
-Activity Data:
-• Name: Enter the activity name or identifier code
-• Description: Provide a detailed description of the activity
-• Production Quantity: Total quantity to be produced for this activity
-• Producer Rate: Production rate per time unit per single producer
-• Number of Producers: Total number of producers working on this activity
-• Efficiency: Production efficiency factor (0.01 to 1.00, where 1.00 = 100% efficient)
-
-BUTTONS:
-• Calculate Duration: Runs the calculation and displays the result
-• Edit Data: Allows you to modify inputs after calculation
-• Help: Shows this help information
-
-All numeric values are displayed with 2 decimal places.`);
-        }
 
         // Add enter key support for calculate
         document.addEventListener('keypress', (e) => {
