@@ -1,1 +1,131 @@
-Coming soon
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>Primocad</title>
+</head>
+<body>
+    <!-- navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon"><img src="assets/logo/primocad logo 2024 - 32 white.png"></div>
+                Primocad
+            </a>
+            <ul class="nav-links">
+                <li><a href="products.html">Products</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <a href="products.html#calculators" class="nav-cta">Calculators</a>
+            <button class="mobile-menu-btn" id="mobile-menu-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- main -->
+    <main>
+        <pre style="padding: 0 1rem; font-size: large;">
+Z-Wizard app documentation
+
+1. Text Tools
+
+1.1. Text to TIN Surface
+Command: TextToTinSurface
+This command creates a TIN surface from text objects. The Z values of the created surface points match the numeric content values of the selected text objects.
+After creating the surface, the selected text objects remain unchanged, and the created surface is independent of the selected text objects.
+Following are the steps to use this command:
+From the ribbon, choose Z-Wizard tab ➪ Text Tools panel ➪ Text to TIN Surface (you can also type the command TextToTinSurface in the command bar).
+At the Select objects prompt, select the text objects you want to use their contents as Z values.
+(Note: Any objects other than the text objects will be automatically filtered out from the selection.)
+At the Enter surface name prompt, type the name you want to assign to the created surface.
+
+1.2. Text to COGO Point
+Command: TextToCOGOPoint
+This command creates COGO points at the locations of text objects. The Z values of the created points match the numeric content values of their corresponding text objects.
+After creating the points, the selected text objects remain unchanged, and the created points are independent of the selected text objects.
+Following are the steps to use this command:
+From the ribbon, choose Z-Wizard tab ➪ Text Tools panel ➪ Text to COGO Point (you can also type the command TextToCOGOPoint in the command bar).
+At the Select objects prompt, select the text objects you want to use their contents as Z values.
+(Note: Any objects other than the text objects will be automatically filtered out from the selection.)
+At the Enter description prompt, type the description you want to assign to the created point(s).
+
+1.3. Text to ACAD Point
+Command: TextToACADPoint
+This command creates AutoCAD point objects at the locations of text objects. The Z values of the created points match the numeric content values of their corresponding text objects.
+After creating the points, the selected text objects remain unchanged, and the created points are independent of the selected text objects.
+Following are the steps to use this command:
+From the ribbon, choose Z-Wizard tab ➪ Text Tools panel ➪ Text to ACAD Point (you can also type the command TextToACADPoint in the command bar).
+At the Select objects prompt, select the text objects you want to use their contents as Z values.
+(Note: Any objects other than the text objects will be automatically filtered out from the selection.)
+
+2. Surface Tools
+
+2.1. COGO Points from TIN Surface
+Command: COGOPointsFromTinSurface
+This command creates COGO points from the points of a TIN surface.
+After creating the COGO points, the selected surface remains unchanged, and the created COGO points are independent of the selected surface.
+Following are the steps to use this command:
+From the ribbon, choose Z-Wizard tab ➪ Surface Tools panel ➪ COGO Points from TIN Surface (you can also type the command COGOPointsFromTinSurface in the command bar).
+At the Enter description prompt, type the description you want to assign to the created points.
+
+2.2. ACAD Points from TIN Surface
+Command: ACADPointsFromTinSurface
+This command creates AutoCAD point objects from the points of a TIN surface.
+After creating the point objects, the selected surface remains unchanged, and the created point objects are independent of the selected surface.
+Following is the step to use this command:
+From the ribbon, choose Z-Wizard tab ➪ Surface Tools panel ➪ ACAD Points from TIN Surface (you can also type the command ACADPointsFromTinSurface in the command bar).
+        </pre>
+    </main>
+
+    <!-- footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>Primocad</h3>
+                <p>We’re all about making your workflow a breeze. We’re here to help you conquer technical challenges and get things done – with a smile on your face.</p>
+            </div>
+
+            <div class="footer-column">
+                <h3>Discover</h3>
+                <ul class="footer-links">
+                    <li><a href="arrange-docs.html">Arrange app documentation</a></li>
+                    <li><a href="zwizard-docs.html">Z-Wizard app documentation</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+                
+            <!---
+            <div class="footer-column">
+                <h3>Social Links</h3>
+                <div class="social-links">
+                    <a href="#" class="social-link"></a>
+                    <a href="#" class="social-link"></a>
+                    <a href="#" class="social-link"></a>
+                    <a href="#" class="social-link"></a>
+                </div>
+            </div>
+            -->
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 Primocad</p>
+        </div>
+    </footer>
+
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
