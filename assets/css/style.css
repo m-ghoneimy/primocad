@@ -365,6 +365,10 @@ main {
     margin: 0 auto;
 }
 
+.testimonial-card-2 * {
+    text-decoration: none !important;
+}
+
 .testimonial-card:hover, .testimonial-card-2:hover {
     transform: translateY(-5px);
     box-shadow: var(--shadow-hover);
