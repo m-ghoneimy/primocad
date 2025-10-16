@@ -87,7 +87,7 @@ faqQuestions.forEach(question => {
 });
 
 // 表单提交处理（如果有表单）
-const ctaButton = document.querySelector('.cta-button');
+/*const ctaButton = document.querySelector('.cta-button');
 const productCta = document.querySelector('.product-cta');
 const productSecondaryCta = document.querySelector('.product-secondary-cta');
 const navCta = document.querySelector('.nav-cta');
@@ -100,7 +100,7 @@ const navCta = document.querySelector('.nav-cta');
             alert('感谢您的兴趣！注册功能即将推出，敬请期待。');
         });
     }
-});
+});*/
 
 // 页面加载完成后的动画
 window.addEventListener('load', function() {
