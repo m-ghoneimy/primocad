@@ -349,7 +349,7 @@
             <div class="button-group">
                 <button class="btn-calculate" id="calculateBtn">Calculate</button>
                 <button class="btn-edit" id="editBtn" disabled>Edit</button>
-                <button class="btn-help" id="helpBtn">Help</button>
+                <button class="btn-help" onclick="window.location.href='duration-calculator-docs.html'">Help</button>
             </div>
 
             <!-- Calculated Duration -->
@@ -434,7 +434,6 @@
         // Get all DOM elements
         const calculateBtn = document.getElementById('calculateBtn');
         const editBtn = document.getElementById('editBtn');
-        const helpBtn = document.getElementById('helpBtn');
         const resultSection = document.getElementById('resultSection');
         const summarySection = document.getElementById('summarySection');
         const resultValue = document.getElementById('resultValue');
@@ -659,9 +658,6 @@
         // Update labels when custom units are typed
         inputs.customQuantityUnit.addEventListener('input', updateLabels);
         inputs.customTimeUnit.addEventListener('input', updateLabels);
-
-        // Help
-        helpBtn.addEventListener('click', window.location.href='duration-calculator-docs.html');
     </script>
 </body>
 </html>
