@@ -10,7 +10,6 @@
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
             max-width: 500px;
 
-            text-align: center;
             margin: 0 auto;
             margin-bottom: 1rem;
         }
@@ -38,9 +37,6 @@
             font-weight: 600;
             color: #333;
             margin-bottom: 16px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
         }
 
         .form-group {
@@ -352,12 +348,6 @@
                 <button class="btn-help" onclick="window.location.href='duration-calculator-docs.html'">Help</button>
             </div>
 
-            <!-- Calculated Duration -->
-            <div class="result-section" id="resultSection" style="display: none;">
-                <div class="result-label">Calculated Duration</div>
-                <div class="result-value" id="resultValue">-</div>
-            </div>
-
             <!-- Summary -->
             <div class="summary-section" id="summarySection" style="display: none;">
                 <div class="section-title">Summary</div>
@@ -381,6 +371,12 @@
                     <span class="summary-label">Efficiency:</span>
                     <span class="summary-value" id="summaryEfficiency">-</span>
                 </div>
+            </div>
+
+            <!-- Calculated Duration -->
+            <div class="result-section" id="resultSection" style="display: none;">
+                <div class="result-label">Calculated Duration</div>
+                <div class="result-value" id="resultValue">-</div>
             </div>
         </div>
     </main>
