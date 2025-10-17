@@ -106,3 +106,6 @@ const navCta = document.querySelector('.nav-cta');
 window.addEventListener('load', function() {
     document.querySelector('.hero-container').classList.add('fade-in');
 });
+
+// dynamic footer year
+document.getElementById('year').textContent = new Date().getFullYear();

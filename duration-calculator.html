@@ -295,7 +295,6 @@
                         <option value="0">0</option>
                         <option value="1">1</option>
                         <option value="2" selected>2</option>
-                        <option value="3">3</option>
                     </select>
                 </div>
             </div>
@@ -329,14 +328,14 @@
                     <label>
                         Number of Producers
                     </label>
-                    <input type="number" id="numProducers" min="0.01" step="0.01">
+                    <input type="number" id="numProducers" value="1" min="0.01" step="0.01">
                     <div class="error-message" id="producersError">Please enter a valid positive integer</div>
                 </div>
                 <div class="form-group">
                     <label>
                         Efficiency (0.01 - 1.00)
                     </label>
-                    <input type="number" id="efficiency" min="0.01" max="1" step="0.01">
+                    <input type="number" id="efficiency" value="1" min="0.01" max="1" step="0.01">
                     <div class="error-message" id="efficiencyError">Efficiency must be between 0.01 and 1.00</div>
                 </div>
             </div>
@@ -420,7 +419,7 @@
         </div>
         
         <div class="footer-bottom">
-            <p>&copy; 2025 Primocad</p>
+            <p>&copy; <span id="year"></span> Primocad</p>
         </div>
     </footer>
 
@@ -548,7 +547,7 @@
 
             // Validate production quantity
             const quantity = parseFloat(inputs.productionQuantity.value);
-            if (isNaN(quantity) || quantity <= 0) {
+            if (isNaN(quantity) || quantity < 0.01) {
                 errors.quantity.classList.add('show');
                 inputs.productionQuantity.classList.add('error');
                 isValid = false;
@@ -556,15 +555,15 @@
 
             // Validate producer rate
             const rate = parseFloat(inputs.producerRate.value);
-            if (isNaN(rate) || rate <= 0) {
+            if (isNaN(rate) || rate < 0.01) {
                 errors.rate.classList.add('show');
                 inputs.producerRate.classList.add('error');
                 isValid = false;
             }
 
             // Validate number of producers
-            const producers = parseInt(inputs.numProducers.value);
-            if (isNaN(producers) || producers < 1 || !Number.isInteger(producers)) {
+            const producers = parseFloat(inputs.numProducers.value);
+            if (isNaN(producers) || producers < 0.01) {
                 errors.producers.classList.add('show');
                 inputs.numProducers.classList.add('error');
                 isValid = false;
@@ -590,29 +589,37 @@
             // Get values
             const quantity = parseFloat(inputs.productionQuantity.value);
             const rate = parseFloat(inputs.producerRate.value);
-            const producers = parseInt(inputs.numProducers.value);
+            const producers = parseFloat(inputs.numProducers.value);
             const efficiency = parseFloat(inputs.efficiency.value);
             const decimals = parseInt(inputs.decimals.value);
 
             // Calculate duration with selected decimal places
             const duration = quantity / (rate * producers * efficiency);
-            const roundedDuration = parseFloat(duration.toFixed(decimals));
+
+            // Round duration based on decimal setting
+            let roundedDuration;
+            if (decimals === 0) {
+                // Always round up (ceiling) when decimals = 0
+                roundedDuration = Math.ceil(duration);
+            } else {
+                roundedDuration = parseFloat(duration.toFixed(decimals));
+            }
 
             // Get unit labels
             const quantityUnitLabel = getQuantityUnitLabel();
             const timeUnitLabel = getTimeUnitLabel();
 
-            // Display result
+            // Display result with selected decimal precision
             const displayDuration = roundedDuration.toFixed(decimals);
             resultValue.textContent = `${displayDuration} ${timeUnitLabel}${parseFloat(displayDuration) !== 1 ? 's' : ''}`;
             resultSection.style.display = 'block';
 
-            // Update summary with proper decimal formatting
+            // Update summary - always use 2 decimal places for inputs
             document.getElementById('summaryName').textContent = inputs.activityName.value || 'N/A';
-            document.getElementById('summaryQuantity').textContent = `${parseFloat(quantity.toFixed(decimals)).toFixed(decimals)} ${quantityUnitLabel}`;
-            document.getElementById('summaryRate').textContent = `${parseFloat(rate.toFixed(decimals)).toFixed(decimals)} ${quantityUnitLabel}/${timeUnitLabel}`;
-            document.getElementById('summaryProducers').textContent = producers;
-            document.getElementById('summaryEfficiency').textContent = `${parseFloat((efficiency * 100).toFixed(decimals)).toFixed(decimals)}%`;
+            document.getElementById('summaryQuantity').textContent = `${quantity.toFixed(2)} ${quantityUnitLabel}`;
+            document.getElementById('summaryRate').textContent = `${rate.toFixed(2)} ${quantityUnitLabel}/${timeUnitLabel}`;
+            document.getElementById('summaryProducers').textContent = producers.toFixed(2);
+            document.getElementById('summaryEfficiency').textContent = `${(efficiency * 100).toFixed(2)}%`;
             summarySection.style.display = 'block';
 
             // Toggle buttons
