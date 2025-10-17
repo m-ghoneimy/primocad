@@ -1,1 +1,921 @@
-Coming soon
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/docs.css">
+    <title>Cost Calculator Docs</title>
+</head>
+<body>
+    <!-- navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon"><img src="assets/logo/primocad logo 2024 - 32 white.png"></div>
+                Primocad
+            </a>
+            <ul class="nav-links">
+                <li><a href="products.html">Products</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <a href="products.html#calculators" class="nav-cta">Calculators</a>
+            <button class="mobile-menu-btn" id="mobile-menu-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- main -->
+    <main class="docs-main">
+        <h1>Cost Calculator Documentation</h1>
+
+        <h2>Overview</h2>
+        <p>The Cost Calculator is a versatile tool designed for project managers, contractors, and financial planners to estimate total project costs by aggregating multiple cost items. It supports both time-dependent costs (labor, equipment rental) and fixed costs (materials, lump-sum payments).</p>
+
+        <h2>Formulas</h2>
+        <p>The calculator uses two different formulas based on cost type:</p>
+
+        <h3>Time-Dependent Costs</h3>
+        <pre><code>Cost = Cost Rate × Duration × Multiplier</code></pre>
+        <p><strong>Use for</strong>: Labor costs, equipment rental, time-based services</p>
+
+        <h3>Fixed Costs</h3>
+        <pre><code>Cost = Cost Value × Multiplier</code></pre>
+        <p><strong>Use for</strong>: Material costs, lump-sum payments, one-time expenses</p>
+
+        <h3>Total Cost</h3>
+        <pre><code>Total Cost = Sum of all Item Costs</code></pre>
+
+        <h2>Getting Started</h2>
+
+        <h3>Basic Workflow</h3>
+        <ol>
+            <li><strong>Select Money Unit</strong> - Choose your currency</li>
+            <li><strong>Add Items</strong> - Create cost items (up to 20)</li>
+            <li><strong>Configure Each Item</strong> - Set cost type and values</li>
+            <li><strong>Calculate Cost</strong> - Get total and breakdown</li>
+            <li><strong>Review Summary</strong> - Check individual item costs</li>
+            <li><strong>Edit if Needed</strong> - Make adjustments and recalculate</li>
+        </ol>
+
+        <h2>Global Settings</h2>
+
+        <h3>Money Unit</h3>
+        <p>Select the currency for all cost calculations:</p>
+        <ul>
+            <li><strong>USD</strong> - United States Dollar</li>
+            <li><strong>EUR</strong> - Euro</li>
+            <li><strong>GBP</strong> - British Pound Sterling</li>
+            <li><strong>JPY</strong> - Japanese Yen</li>
+            <li><strong>EGP</strong> - Egyptian Pound</li>
+            <li><strong>Custom</strong> - Define your own currency</li>
+        </ul>
+        <p><strong>Example</strong>: Select "USD" for projects in the United States</p>
+
+        <h3>Custom Money Unit</h3>
+        <p>When you select "Custom" as the money unit:</p>
+        <ol>
+            <li>A text input field appears below the dropdown</li>
+            <li>Enter your currency code or name (e.g., "SAR", "AED", "INR", "CAD")</li>
+            <li>All cost displays will use your custom currency</li>
+        </ol>
+        <p><strong>Tip</strong>: Use standard three-letter currency codes (ISO 4217) for consistency</p>
+
+        <h3>Add Item Button</h3>
+        <p>Click this button to add a new cost item to your estimation.</p>
+        <p><strong>Behavior</strong>:</p>
+        <ul>
+            <li>Creates a new item with default values</li>
+            <li>Items are numbered sequentially (Item 1, Item 2, etc.)</li>
+            <li>Maximum of 20 items allowed</li>
+            <li>Button becomes disabled when limit is reached</li>
+        </ul>
+        <p><strong>Starting State</strong>: The calculator starts empty with a message prompting you to add items.</p>
+
+        <h2>Cost Items</h2>
+        <p>Each cost item represents a distinct cost component in your project. Items can be added, configured, and deleted independently.</p>
+
+        <h3>Item Structure</h3>
+        <p>Every item contains:</p>
+        <ul>
+            <li><strong>Name</strong> - Description or identifier</li>
+            <li><strong>Cost Type</strong> - Time-dependent or Fixed</li>
+            <li><strong>Cost Fields</strong> - Rate/Duration or Value (based on type)</li>
+            <li><strong>Multiplier</strong> - Adjustment factor</li>
+            <li><strong>Delete Button</strong> - Remove the item</li>
+        </ul>
+
+        <h3>Name</h3>
+        <p>Enter a descriptive name or code for the cost item.</p>
+        <p><strong>Examples</strong>:</p>
+        <ul>
+            <li>"Labor - Concrete Crew"</li>
+            <li>"Equipment Rental - Excavator"</li>
+            <li>"Materials - Rebar"</li>
+            <li>"Subcontractor - Electrical"</li>
+            <li>"CST-001"</li>
+        </ul>
+        <p><strong>Best Practice</strong>: Use clear, specific names that identify the cost purpose</p>
+        <p><strong>Note</strong>: If left empty, the system uses "Item (X)" as the default name in summaries</p>
+
+        <h3>Cost Type</h3>
+        <p>Select whether this is a time-dependent or fixed cost:</p>
+
+        <h4>Time-Dependent</h4>
+        <p>Use for costs that vary based on duration:</p>
+        <ul>
+            <li>Labor costs (hourly/daily wages)</li>
+            <li>Equipment rental (rental per day/week)</li>
+            <li>Temporary facilities (per month)</li>
+            <li>Consultant fees (per hour/day)</li>
+        </ul>
+        <p><strong>When selected</strong>: Shows "Cost Rate" and "Duration" fields</p>
+
+        <h4>Fixed</h4>
+        <p>Use for one-time or lump-sum costs:</p>
+        <ul>
+            <li>Material purchases</li>
+            <li>Lump-sum subcontracts</li>
+            <li>Permits and fees</li>
+            <li>One-time equipment purchases</li>
+        </ul>
+        <p><strong>When selected</strong>: Shows "Cost Value" field</p>
+        <p><strong>Note</strong>: Fields automatically update when you change the cost type</p>
+
+        <h3>Cost Rate (Time-Dependent Only)</h3>
+        <p>Enter the cost per time unit for time-dependent items.</p>
+        <p><strong>Examples</strong>:</p>
+        <ul>
+            <li><strong>25.00</strong> - $25 per hour for labor</li>
+            <li><strong>500.00</strong> - $500 per day for equipment rental</li>
+            <li><strong>150.00</strong> - $150 per hour for consultant</li>
+            <li><strong>2000.00</strong> - $2000 per week for temporary office</li>
+        </ul>
+        <p><strong>Formula Usage</strong>: Cost Rate × Duration × Multiplier</p>
+        <p><strong>Default Value</strong>: 10.00</p>
+
+        <h3>Duration (Time-Dependent Only)</h3>
+        <p>Enter the time duration for the cost item (without specifying units).</p>
+        <p><strong>Examples</strong>:</p>
+        <ul>
+            <li><strong>8</strong> - 8 hours</li>
+            <li><strong>15</strong> - 15 days</li>
+            <li><strong>3.5</strong> - 3.5 weeks</li>
+            <li><strong>2</strong> - 2 months</li>
+        </ul>
+        <p><strong>Tip</strong>: Ensure your duration units match your cost rate units</p>
+        <ul>
+            <li>If rate is per hour, duration should be in hours</li>
+            <li>If rate is per day, duration should be in days</li>
+        </ul>
+        <p><strong>Formula Usage</strong>: Cost Rate × Duration × Multiplier</p>
+        <p><strong>Default Value</strong>: 1</p>
+        <p><strong>Note</strong>: Duration is unitless - you define what it represents based on your cost rate</p>
+
+        <h3>Cost Value (Fixed Only)</h3>
+        <p>Enter the total fixed cost amount.</p>
+        <p><strong>Examples</strong>:</p>
+        <ul>
+            <li><strong>5000.00</strong> - $5000 for materials</li>
+            <li><strong>15000.00</strong> - $15000 lump-sum subcontract</li>
+            <li><strong>500.00</strong> - $500 permit fee</li>
+            <li><strong>25000.00</strong> - $25000 equipment purchase</li>
+        </ul>
+        <p><strong>Formula Usage</strong>: Cost Value × Multiplier</p>
+        <p><strong>Default Value</strong>: 10.00</p>
+
+        <h3>Multiplier</h3>
+        <p>Enter a factor to multiply the calculated cost. Use this for:</p>
+        <ul>
+            <li><strong>Quantity multipliers</strong> (e.g., 3 identical items)</li>
+            <li><strong>Risk/contingency factors</strong> (e.g., 1.1 for 10% contingency)</li>
+            <li><strong>Efficiency adjustments</strong> (e.g., 0.9 for 10% discount)</li>
+            <li><strong>Multiple units</strong> (e.g., 5 workers)</li>
+        </ul>
+
+        <p><strong>Common Uses</strong>:</p>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Multiplier</th>
+                    <th>Purpose</th>
+                    <th>Example</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1.0</td>
+                    <td>No adjustment</td>
+                    <td>Standard calculation</td>
+                </tr>
+                <tr>
+                    <td>2.0</td>
+                    <td>Double quantity</td>
+                    <td>Two identical items</td>
+                </tr>
+                <tr>
+                    <td>1.1</td>
+                    <td>10% increase</td>
+                    <td>10% contingency</td>
+                </tr>
+                <tr>
+                    <td>0.9</td>
+                    <td>10% decrease</td>
+                    <td>10% discount</td>
+                </tr>
+                <tr>
+                    <td>1.15</td>
+                    <td>15% markup</td>
+                    <td>Profit margin</td>
+                </tr>
+                <tr>
+                    <td>3.5</td>
+                    <td>Quantity</td>
+                    <td>3.5 workers or units</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p><strong>Formula Impact</strong>:</p>
+        <ul>
+            <li>Time-dependent: Cost Rate × Duration × <strong>Multiplier</strong></li>
+            <li>Fixed: Cost Value × <strong>Multiplier</strong></li>
+        </ul>
+        <p><strong>Default Value</strong>: 1 (no adjustment)</p>
+
+        <p><strong>Example</strong>: If you have 3 workers at $25/hour for 8 hours:</p>
+        <ul>
+            <li>Cost Rate: 25.00</li>
+            <li>Duration: 8</li>
+            <li>Multiplier: 3 (for 3 workers)</li>
+            <li>Total: 25 × 8 × 3 = $600</li>
+        </ul>
+
+        <h3>Delete Item Button</h3>
+        <p>Click this button to remove a cost item from your estimation.</p>
+        <p><strong>What happens</strong>:</p>
+        <ol>
+            <li>The item is permanently removed</li>
+            <li>Remaining items are automatically renumbered</li>
+            <li>If all items are deleted, the empty state message appears</li>
+            <li>Add Item button becomes enabled if it was disabled (at max limit)</li>
+        </ol>
+        <p><strong>Note</strong>: This action cannot be undone. Make sure you want to delete the item.</p>
+
+        <h2>Managing Items</h2>
+
+        <h3>Adding Items</h3>
+        <ol>
+            <li>Click the "Add Item" button in the Global Settings section</li>
+            <li>A new item card appears at the bottom of the items list</li>
+            <li>Item is numbered automatically (Item 1, Item 2, etc.)</li>
+            <li>Default values are populated for quick start</li>
+            <li>Configure the item with your specific values</li>
+        </ol>
+        <p><strong>Limit</strong>: Maximum 20 items per calculation</p>
+
+        <h3>Deleting Items</h3>
+        <ol>
+            <li>Scroll to the item you want to remove</li>
+            <li>Click the "Delete Item" button at the bottom of the item card</li>
+            <li>Item is removed immediately</li>
+            <li>Remaining items are renumbered to maintain sequence</li>
+        </ol>
+        <p><strong>Example</strong>: If you delete Item 2:</p>
+        <ul>
+            <li>Item 1 stays as Item 1</li>
+            <li>Item 3 becomes Item 2</li>
+            <li>Item 4 becomes Item 3, and so on</li>
+        </ul>
+
+        <h3>Renumbering</h3>
+        <p>Items are automatically renumbered when:</p>
+        <ul>
+            <li>An item is deleted</li>
+            <li>The item list order changes</li>
+        </ul>
+        <p><strong>Purpose</strong>: Maintains clear sequential numbering for easy reference</p>
+
+        <h2>Using the Calculator</h2>
+
+        <h3>Step-by-Step Example</h3>
+        <p>Let's estimate the cost for a small construction project:</p>
+        <p><strong>Scenario</strong>: Calculate costs for a concrete foundation job</p>
+
+        <h4>Step 1: Configure Global Settings</h4>
+        <p><strong>Money Unit</strong>: USD</p>
+
+        <h4>Step 2: Add First Item - Labor</h4>
+        <p>Click "Add Item", then configure:</p>
+        <ul>
+            <li><strong>Name</strong>: Concrete Crew Labor</li>
+            <li><strong>Cost Type</strong>: Time-dependent</li>
+            <li><strong>Cost Rate</strong>: 40.00 ($/hour per worker)</li>
+            <li><strong>Duration</strong>: 8 (hours)</li>
+            <li><strong>Multiplier</strong>: 4 (4 workers)</li>
+        </ul>
+        <p><strong>Calculation</strong>: 40 × 8 × 4 = <strong>$1,280.00</strong></p>
+
+        <h4>Step 3: Add Second Item - Equipment</h4>
+        <p>Click "Add Item", then configure:</p>
+        <ul>
+            <li><strong>Name</strong>: Concrete Mixer Rental</li>
+            <li><strong>Cost Type</strong>: Time-dependent</li>
+            <li><strong>Cost Rate</strong>: 150.00 ($/day)</li>
+            <li><strong>Duration</strong>: 1 (day)</li>
+            <li><strong>Multiplier</strong>: 1</li>
+        </ul>
+        <p><strong>Calculation</strong>: 150 × 1 × 1 = <strong>$150.00</strong></p>
+
+        <h4>Step 4: Add Third Item - Materials</h4>
+        <p>Click "Add Item", then configure:</p>
+        <ul>
+            <li><strong>Name</strong>: Concrete Materials</li>
+            <li><strong>Cost Type</strong>: Fixed</li>
+            <li><strong>Cost Value</strong>: 800.00</li>
+            <li><strong>Multiplier</strong>: 1</li>
+        </ul>
+        <p><strong>Calculation</strong>: 800 × 1 = <strong>$800.00</strong></p>
+
+        <h4>Step 5: Add Fourth Item - Rebar</h4>
+        <p>Click "Add Item", then configure:</p>
+        <ul>
+            <li><strong>Name</strong>: Rebar Steel</li>
+            <li><strong>Cost Type</strong>: Fixed</li>
+            <li><strong>Cost Value</strong>: 350.00</li>
+            <li><strong>Multiplier</strong>: 1</li>
+        </ul>
+        <p><strong>Calculation</strong>: 350 × 1 = <strong>$350.00</strong></p>
+
+        <h4>Step 6: Calculate</h4>
+        <p>Click "Calculate Cost" button</p>
+        <p><strong>Total Cost</strong>: 1,280 + 150 + 800 + 350 = <strong>$2,580.00 USD</strong></p>
+
+        <h4>Step 7: Review Summary</h4>
+        <p>The summary shows:</p>
+        <ul>
+            <li>Concrete Crew Labor: $1,280.00 USD</li>
+            <li>Concrete Mixer Rental: $150.00 USD</li>
+            <li>Concrete Materials: $800.00 USD</li>
+            <li>Rebar Steel: $350.00 USD</li>
+        </ul>
+
+        <h2>Calculator Buttons</h2>
+
+        <h3>Calculate Cost Button</h3>
+        <p>Click this button to perform the calculation and display total cost.</p>
+        <p><strong>What happens</strong>:</p>
+        <ol>
+            <li>Validates that at least one item exists</li>
+            <li>Calculates cost for each item using appropriate formula</li>
+            <li>Sums all item costs for the total</li>
+            <li>Displays total cost with currency</li>
+            <li>Shows detailed summary with individual item costs</li>
+            <li>Disables all inputs (locked for review)</li>
+            <li>Disables "Calculate Cost" button</li>
+            <li>Enables "Edit" button</li>
+        </ol>
+        <p><strong>Requirements</strong>: At least one item must be added</p>
+        <p><strong>Note</strong>: All numeric fields use default values if empty (preventing errors)</p>
+
+        <h3>Edit Button</h3>
+        <p>Click this button to modify your cost estimation after calculation.</p>
+        <p><strong>What happens</strong>:</p>
+        <ol>
+            <li>All inputs become enabled (unlocked)</li>
+            <li>You can add, modify, or delete items</li>
+            <li>You can change global settings</li>
+            <li>"Calculate Cost" button becomes enabled</li>
+            <li>"Edit" button becomes disabled</li>
+            <li>Results and summary sections remain visible for reference</li>
+        </ol>
+        <p><strong>Use Cases</strong>:</p>
+        <ul>
+            <li>Correct input errors</li>
+            <li>Test different scenarios</li>
+            <li>Update costs based on new information</li>
+            <li>Add or remove items</li>
+            <li>Apply different multipliers</li>
+        </ul>
+
+        <h3>Help Button</h3>
+        <p>Click this button to access documentation and help resources.</p>
+        <p><strong>Purpose</strong>: Quick access to instructions and best practices</p>
+
+        <h2>Results</h2>
+
+        <h3>Calculated Total Cost</h3>
+        <p>Displays the sum of all item costs in large, prominent format with your selected currency.</p>
+        <p><strong>Format</strong>: "[Amount] [Currency]"</p>
+        <p><strong>Examples</strong>:</p>
+        <ul>
+            <li>"2,580.00 USD"</li>
+            <li>"15,750.50 EUR"</li>
+            <li>"125,000.00 EGP"</li>
+        </ul>
+        <p><strong>Note</strong>: Always displays with 2 decimal places for currency precision</p>
+
+        <h3>Summary Section</h3>
+        <p>Provides an itemized breakdown of all costs:</p>
+        <p><strong>Format</strong>: Each line shows:</p>
+        <ul>
+            <li><strong>Item Name</strong>: As entered or default "Item (X)"</li>
+            <li><strong>Item Cost</strong>: Calculated amount with currency</li>
+        </ul>
+        <p><strong>Purpose</strong>:</p>
+        <ul>
+            <li>Verify individual item calculations</li>
+            <li>Identify cost distribution</li>
+            <li>Support decision-making</li>
+            <li>Provide documentation for stakeholders</li>
+        </ul>
+        <p><strong>Example Summary</strong>:</p>
+        <pre><code>Concrete Crew Labor: 1,280.00 USD
+    Concrete Mixer Rental: 150.00 USD
+    Concrete Materials: 800.00 USD
+    Rebar Steel: 350.00 USD</code></pre>
+
+        <h2>Tips &amp; Best Practices</h2>
+
+        <h3>Accuracy Tips</h3>
+        <ol>
+            <li><strong>Break Down Costs</strong>: Separate different cost types for clarity</li>
+            <li><strong>Use Realistic Rates</strong>: Base rates on actual quotes or historical data</li>
+            <li><strong>Include Contingencies</strong>: Use multipliers for risk buffers (e.g., 1.10 = 10% contingency)</li>
+            <li><strong>Document Assumptions</strong>: Use clear item names that explain the cost</li>
+            <li><strong>Regular Updates</strong>: Revise estimates as project details become clearer</li>
+            <li><strong>Consider All Costs</strong>: Don't forget indirect costs like supervision, utilities, insurance</li>
+        </ol>
+
+        <h3>Cost Organization Strategies</h3>
+
+        <h4>By Cost Category</h4>
+        <p>Organize items by type:</p>
+        <ul>
+            <li>All labor items together</li>
+            <li>All equipment items together</li>
+            <li>All material items together</li>
+            <li>All subcontractor items together</li>
+        </ul>
+
+        <h4>By Work Package</h4>
+        <p>Organize items by project phase or location:</p>
+        <ul>
+            <li>Foundation costs</li>
+            <li>Structure costs</li>
+            <li>Finishing costs</li>
+            <li>MEP (Mechanical, Electrical, Plumbing) costs</li>
+        </ul>
+
+        <h4>By Responsibility</h4>
+        <p>Organize items by who manages the cost:</p>
+        <ul>
+            <li>Direct costs (you manage)</li>
+            <li>Subcontractor costs</li>
+            <li>Client-supplied items</li>
+        </ul>
+
+        <h3>Common Use Cases</h3>
+
+        <h4>1. Construction Project Estimation</h4>
+        <p><strong>Labor Costs</strong> (Time-dependent):</p>
+        <ul>
+            <li>Cost Rate: Hourly or daily wage rate</li>
+            <li>Duration: Hours or days worked</li>
+            <li>Multiplier: Number of workers</li>
+        </ul>
+
+        <p><strong>Equipment Rental</strong> (Time-dependent):</p>
+        <ul>
+            <li>Cost Rate: Daily/weekly/monthly rental rate</li>
+            <li>Duration: Rental period</li>
+            <li>Multiplier: Number of units or adjustment factor</li>
+        </ul>
+
+        <p><strong>Materials</strong> (Fixed):</p>
+        <ul>
+            <li>Cost Value: Total material cost</li>
+            <li>Multiplier: 1 (or quantity if buying multiple lots)</li>
+        </ul>
+
+        <p><strong>Subcontracts</strong> (Fixed):</p>
+        <ul>
+            <li>Cost Value: Lump-sum price</li>
+            <li>Multiplier: 1 (or adjustment for contingency)</li>
+        </ul>
+
+        <h4>2. Event Planning</h4>
+        <p><strong>Venue Rental</strong> (Time-dependent):</p>
+        <ul>
+            <li>Cost Rate: Hourly rate</li>
+            <li>Duration: Event hours</li>
+            <li>Multiplier: 1</li>
+        </ul>
+
+        <p><strong>Catering</strong> (Fixed):</p>
+        <ul>
+            <li>Cost Value: Per-person cost</li>
+            <li>Multiplier: Number of attendees</li>
+        </ul>
+
+        <p><strong>Equipment</strong> (Fixed):</p>
+        <ul>
+            <li>Cost Value: Rental/purchase price</li>
+            <li>Multiplier: Quantity needed</li>
+        </ul>
+
+        <h4>3. Consulting Projects</h4>
+        <p><strong>Consultant Time</strong> (Time-dependent):</p>
+        <ul>
+            <li>Cost Rate: Hourly billing rate</li>
+            <li>Duration: Estimated hours</li>
+            <li>Multiplier: Number of consultants</li>
+        </ul>
+
+        <p><strong>Travel Expenses</strong> (Fixed):</p>
+        <ul>
+            <li>Cost Value: Estimated total</li>
+            <li>Multiplier: Number of trips</li>
+        </ul>
+
+        <p><strong>Deliverables</strong> (Fixed):</p>
+        <ul>
+            <li>Cost Value: Production cost</li>
+            <li>Multiplier: Number of copies/units</li>
+        </ul>
+
+        <h4>4. Manufacturing Cost Analysis</h4>
+        <p><strong>Direct Labor</strong> (Time-dependent):</p>
+        <ul>
+            <li>Cost Rate: Labor rate per unit time</li>
+            <li>Duration: Production time</li>
+            <li>Multiplier: Number of workers or shifts</li>
+        </ul>
+
+        <p><strong>Machine Time</strong> (Time-dependent):</p>
+        <ul>
+            <li>Cost Rate: Machine operating cost per hour</li>
+            <li>Duration: Production hours</li>
+            <li>Multiplier: Number of machines</li>
+        </ul>
+
+        <p><strong>Raw Materials</strong> (Fixed):</p>
+        <ul>
+            <li>Cost Value: Material cost per batch</li>
+            <li>Multiplier: Number of batches</li>
+        </ul>
+
+        <p><strong>Overhead</strong> (Fixed):</p>
+        <ul>
+            <li>Cost Value: Allocated overhead</li>
+            <li>Multiplier: Overhead factor</li>
+        </ul>
+
+        <h3>Using Multipliers Effectively</h3>
+
+        <h4>Quantity Multipliers</h4>
+        <p><strong>Example</strong>: 5 workers at $30/hour for 8 hours</p>
+        <ul>
+            <li>Cost Rate: 30.00</li>
+            <li>Duration: 8</li>
+            <li>Multiplier: 5</li>
+            <li>Total: 30 × 8 × 5 = $1,200</li>
+        </ul>
+
+        <h4>Contingency/Risk Multipliers</h4>
+        <p><strong>Example</strong>: Material cost with 15% contingency</p>
+        <ul>
+            <li>Cost Value: 5,000.00</li>
+            <li>Multiplier: 1.15</li>
+            <li>Total: 5,000 × 1.15 = $5,750</li>
+        </ul>
+
+        <h4>Discount Multipliers</h4>
+        <p><strong>Example</strong>: Negotiated 10% discount</p>
+        <ul>
+            <li>Cost Value: 2,000.00</li>
+            <li>Multiplier: 0.90</li>
+            <li>Total: 2,000 × 0.90 = $1,800</li>
+        </ul>
+
+        <h4>Combined Multipliers</h4>
+        <p><strong>Example</strong>: 3 units with 10% markup</p>
+        <ul>
+            <li>Cost Value: 1,000.00</li>
+            <li>Multiplier: 3.3 (3 units × 1.1 markup)</li>
+            <li>Total: 1,000 × 3.3 = $3,300</li>
+        </ul>
+
+        <h3>Scenario Analysis</h3>
+        <p>Use the Edit feature to compare different scenarios:</p>
+        <ol>
+            <li><strong>Calculate Baseline</strong>: Initial estimate with standard assumptions</li>
+            <li><strong>Click Edit</strong>: Enable modifications</li>
+            <li><strong>Adjust Values</strong>: Change rates, durations, or multipliers</li>
+            <li><strong>Recalculate</strong>: See impact of changes</li>
+            <li><strong>Compare</strong>: Evaluate different options</li>
+        </ol>
+
+        <p><strong>Example Scenarios</strong>:</p>
+        <ul>
+            <li>Optimistic vs. Pessimistic estimates</li>
+            <li>Different labor crew sizes</li>
+            <li>Alternative equipment options</li>
+            <li>Various contingency levels</li>
+            <li>Fast-track vs. normal schedule</li>
+        </ul>
+
+        <h3>Budget Management</h3>
+        <p>The calculator helps with:</p>
+
+        <h4>Initial Budgeting</h4>
+        <ul>
+            <li>Estimate total project costs</li>
+            <li>Identify major cost drivers</li>
+            <li>Set realistic budget targets</li>
+            <li>Secure funding/approvals</li>
+        </ul>
+
+        <h4>Cost Control</h4>
+        <ul>
+            <li>Track actual vs. estimated costs</li>
+            <li>Identify cost overruns early</li>
+            <li>Make informed adjustments</li>
+            <li>Maintain budget discipline</li>
+        </ul>
+
+        <h4>Value Engineering</h4>
+        <ul>
+            <li>Evaluate cost reduction options</li>
+            <li>Compare alternative approaches</li>
+            <li>Optimize resource allocation</li>
+            <li>Balance cost vs. quality</li>
+        </ul>
+
+        <h4>Reporting</h4>
+        <ul>
+            <li>Generate cost breakdowns for stakeholders</li>
+            <li>Document cost assumptions</li>
+            <li>Support procurement decisions</li>
+            <li>Facilitate financial planning</li>
+        </ul>
+
+        <h2>Troubleshooting</h2>
+
+        <h3>Common Issues</h3>
+        <p><strong>Issue</strong>: "Please add at least one item before calculating" message</p>
+        <ul>
+            <li><strong>Solution</strong>: Click "Add Item" to create at least one cost item</li>
+        </ul>
+
+        <p><strong>Issue</strong>: Add Item button is disabled</p>
+        <ul>
+            <li><strong>Solution</strong>: You've reached the maximum of 20 items. Delete unused items to add new ones.</li>
+        </ul>
+
+        <p><strong>Issue</strong>: Total cost seems incorrect</p>
+        <ul>
+            <li><strong>Solution</strong>:
+                <ul>
+                    <li>Check that cost type matches your cost structure</li>
+                    <li>Verify cost rate/value is correct</li>
+                    <li>Ensure duration units match rate units</li>
+                    <li>Review multiplier values</li>
+                    <li>Check the summary for individual item costs</li>
+                </ul>
+            </li>
+        </ul>
+
+        <p><strong>Issue</strong>: Can't delete all items</p>
+        <ul>
+            <li><strong>Solution</strong>: This is normal behavior. You can delete items one at a time. After deleting all, you'll see the empty state.</li>
+        </ul>
+
+        <p><strong>Issue</strong>: Items not renumbering after deletion</p>
+        <ul>
+            <li><strong>Solution</strong>: This should happen automatically. Try refreshing the page if you experience issues.</li>
+        </ul>
+
+        <p><strong>Issue</strong>: Custom currency not displaying</p>
+        <ul>
+            <li><strong>Solution</strong>: Ensure you've entered text in the Custom Money Unit field after selecting "Custom"</li>
+        </ul>
+
+        <p><strong>Issue</strong>: Lost my calculation after clicking Edit</p>
+        <ul>
+            <li><strong>Solution</strong>: Results remain visible when you click Edit. Take a screenshot before editing if you want to preserve the original calculation.</li>
+        </ul>
+
+        <h3>Validation and Error Prevention</h3>
+        <p>The calculator includes safeguards:</p>
+        <ul>
+            <li><strong>Empty values default to 0</strong> (won't cause calculation errors)</li>
+            <li><strong>No minimum item requirement for editing</strong> (you can remove all items)</li>
+            <li><strong>Automatic renumbering</strong> (maintains organization)</li>
+            <li><strong>20-item limit</strong> (prevents performance issues)</li>
+            <li><strong>Clear item structure</strong> (reduces input confusion)</li>
+        </ul>
+
+        <h2>Advanced Tips</h2>
+
+        <h3>Handling Complex Projects</h3>
+        <p>For large projects with many cost items:</p>
+        <ol>
+            <li><strong>Group Similar Items</strong>: Use naming conventions (e.g., "Labor - Concrete", "Labor - Framing")</li>
+            <li><strong>Create Multiple Estimates</strong>: Use separate calculations for different project phases</li>
+            <li><strong>Document Assumptions</strong>: Include rate sources and duration estimates in item names</li>
+            <li><strong>Regular Updates</strong>: Recalculate as project details become clearer</li>
+        </ol>
+
+        <h3>Integration with Other Tools</h3>
+        <p>Calculator results can feed into:</p>
+        <ul>
+            <li>Project management software</li>
+            <li>Accounting systems</li>
+            <li>Proposal documents</li>
+            <li>Budget tracking spreadsheets</li>
+            <li>Financial reports</li>
+        </ul>
+        <p><strong>Best Practice</strong>: Export or document your calculations for record-keeping</p>
+
+        <h3>Estimating Best Practices</h3>
+        <ol>
+            <li><strong>Top-Down + Bottom-Up</strong>: Start with overall budget, then detail individual items</li>
+            <li><strong>Historical Data</strong>: Use past project data for rate and duration estimates</li>
+            <li><strong>Market Research</strong>: Verify rates with current quotes and market conditions</li>
+            <li><strong>Risk Assessment</strong>: Apply appropriate contingencies based on uncertainty</li>
+            <li><strong>Stakeholder Review</strong>: Have estimates reviewed by subject matter experts</li>
+            <li><strong>Continuous Refinement</strong>: Update estimates as more information becomes available</li>
+        </ol>
+
+        <h2>Frequently Asked Questions</h2>
+
+        <p><strong>Q: Can I save my cost estimates?</strong></p>
+        <p>A: The current version doesn't save automatically. Take screenshots or document the summary for your records.</p>
+
+        <p><strong>Q: What's the maximum number of items I can add?</strong></p>
+        <p>A: The calculator supports up to 20 cost items per estimation.</p>
+
+        <p><strong>Q: Can I use decimal values for duration and multiplier?</strong></p>
+        <p>A: Yes, all numeric fields accept decimal values (e.g., 2.5 days, 1.15 multiplier).</p>
+
+        <p><strong>Q: When should I use time-dependent vs. fixed cost types?</strong></p>
+        <p>A: Use time-dependent for costs that vary with duration (labor, rentals). Use fixed for one-time costs (materials, lump-sum contracts).</p>
+
+        <p><strong>Q: How do I add contingency to my estimate?</strong></p>
+        <p>A: Use the multiplier field. For 10% contingency, use multiplier of 1.10.</p>
+
+        <p><strong>Q: Can I change the cost type after adding an item?</strong></p>
+        <p>A: Yes, use the Cost Type dropdown. The fields automatically update to show relevant inputs.</p>
+
+        <p><strong>Q: What happens if I don't name an item?</strong></p>
+        <p>A: The system uses "Item (X)" as the default name in the summary, where X is the item number.</p>
+
+        <p><strong>Q: How precise are the calculations?</strong></p>
+        <p>A: All costs are calculated and displayed with 2 decimal places for currency accuracy.</p>
+
+        <p><strong>Q: Can I use this calculator for non-construction projects?</strong></p>
+        <p>A: Absolutely! The calculator works for any project requiring cost estimation: events, consulting, manufacturing, services, etc.</p>
+
+        <p><strong>Q: What if my duration units don't match my cost rate units?</strong></p>
+        <p>A: You must ensure consistency. If your rate is per hour, duration should be in hours. If rate is per day, duration should be in days.</p>
+
+        <p><strong>Q: Can I estimate costs in multiple currencies in one calculation?</strong></p>
+        <p>A: No, all items use the same money unit. For multi-currency projects, create separate calculations or convert to a single currency.</p>
+
+        <p><strong>Q: How do I estimate costs for multiple shifts?</strong></p>
+        <p>A: Use the multiplier for the number of shifts (e.g., 2 shifts = multiplier of 2) or adjust your duration accordingly.</p>
+
+        <h2>Formula Examples</h2>
+
+        <h3>Example 1: Labor Cost (Time-Dependent)</h3>
+        <p><strong>Scenario</strong>: 3 carpenters working 5 days at $35/hour, 8 hours per day</p>
+
+        <p><strong>Method 1</strong> (using daily rate):</p>
+        <ul>
+            <li>Cost Rate: 280.00 (35 × 8 hours)</li>
+            <li>Duration: 5 (days)</li>
+            <li>Multiplier: 3 (workers)</li>
+            <li><strong>Total</strong>: 280 × 5 × 3 = <strong>$4,200.00</strong></li>
+        </ul>
+
+        <p><strong>Method 2</strong> (using hourly rate):</p>
+        <ul>
+            <li>Cost Rate: 35.00</li>
+            <li>Duration: 40 (5 days × 8 hours)</li>
+            <li>Multiplier: 3 (workers)</li>
+            <li><strong>Total</strong>: 35 × 40 × 3 = <strong>$4,200.00</strong></li>
+        </ul>
+
+        <h3>Example 2: Equipment Rental (Time-Dependent)</h3>
+        <p><strong>Scenario</strong>: Excavator rental for 2 weeks at $500/week with 10% discount</p>
+        <p><strong>Setup</strong>:</p>
+        <ul>
+            <li>Cost Rate: 500.00</li>
+            <li>Duration: 2 (weeks)</li>
+            <li>Multiplier: 0.90 (10% discount)</li>
+            <li><strong>Total</strong>: 500 × 2 × 0.90 = <strong>$900.00</strong></li>
+        </ul>
+
+        <h3>Example 3: Materials (Fixed)</h3>
+        <p><strong>Scenario</strong>: 50 bags of cement at $8 per bag</p>
+        <p><strong>Setup</strong>:</p>
+        <ul>
+            <li>Cost Value: 8.00</li>
+            <li>Multiplier: 50 (bags)</li>
+            <li><strong>Total</strong>: 8 × 50 = <strong>$400.00</strong></li>
+        </ul>
+
+        <h3>Example 4: Mixed Project</h3>
+        <p><strong>Complete small renovation estimate</strong>:</p>
+
+        <p><strong>Item 1 - Labor</strong> (Time-dependent):</p>
+        <ul>
+            <li>Rate: 40/hour, Duration: 80 hours, Multiplier: 2 workers</li>
+            <li>Cost: 40 × 80 × 2 = $6,400</li>
+        </ul>
+
+        <p><strong>Item 2 - Materials</strong> (Fixed):</p>
+        <ul>
+            <li>Value: 2,500, Multiplier: 1.05 (5% waste factor)</li>
+            <li>Cost: 2,500 × 1.05 = $2,625</li>
+        </ul>
+
+        <p><strong>Item 3 - Equipment</strong> (Time-dependent):</p>
+        <ul>
+            <li>Rate: 150/day, Duration: 10 days, Multiplier: 1</li>
+            <li>Cost: 150 × 10 × 1 = $1,500</li>
+        </ul>
+
+        <p><strong>Item 4 - Permits</strong> (Fixed):</p>
+        <ul>
+            <li>Value: 350, Multiplier: 1</li>
+            <li>Cost: 350 × 1 = $350</li>
+        </ul>
+
+        <p><strong>Total Project Cost</strong>: $6,400 + $2,625 + $1,500 + $350 = <strong>$10,875.00</strong></p>
+
+        <h2>Support</h2>
+        <p>For additional support or feature requests:</p>
+        <ul>
+            <li>Visit: <a href="https://primocad.com">primocad.com</a></li>
+            <li>Contact: Through the Contact page on our website</li>
+        </ul>
+
+        <hr>
+
+        <p><strong>Version</strong>: 1.0<br>
+        <strong>Last Updated</strong>: 2025<br>
+        <strong>Developed by</strong>: Primocad</p>
+    </main>
+
+    <!-- footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>Primocad</h3>
+                <p>We’re all about making your workflow a breeze. We’re here to help you conquer technical challenges and get things done – with a smile on your face.</p>
+            </div>
+
+            <div class="footer-column">
+                <h3>Discover</h3>
+                <ul class="footer-links">
+                    <li><a href="arrange-docs.html">Arrange app documentation</a></li>
+                    <li><a href="zwizard-docs.html">Z-Wizard app documentation</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+                
+            <!---
+            <div class="footer-column">
+                <h3>Social Links</h3>
+                <div class="social-links">
+                    <a href="#" class="social-link"></a>
+                    <a href="#" class="social-link"></a>
+                    <a href="#" class="social-link"></a>
+                    <a href="#" class="social-link"></a>
+                </div>
+            </div>
+            -->
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 Primocad</p>
+        </div>
+    </footer>
+
+    <script src="assets/js/script.js"></script>
+</body>
+</html>

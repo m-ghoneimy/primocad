@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/style.css">
-    <title>Z-Wizard Docs</title>
+    <link rel="stylesheet" href="assets/css/docs.css">
+    <title>Z-Wizard App Docs</title>
 </head>
 <body>
     <!-- navigation -->
@@ -29,58 +30,66 @@
     </nav>
 
     <!-- main -->
-    <main>
-        <pre style="padding: 0 1rem; font-size: large;">
-Z-Wizard App Documentation
+    <main class="docs-main">
+        <h1>Z-Wizard App Documentation</h1>
 
-1. Text Tools
+        <h2>1. Text Tools</h2>
 
-1.1. Text to TIN Surface
-Command: TextToTinSurface
-This command creates a TIN surface from text objects. The Z values of the created surface points match the numeric content values of the selected text objects.
-After creating the surface, the selected text objects remain unchanged, and the created surface is independent of the selected text objects.
-Following are the steps to use this command:
-From the ribbon, choose Z-Wizard tab ➪ Text Tools panel ➪ Text to TIN Surface (you can also type the command TextToTinSurface in the command bar).
-At the Select objects prompt, select the text objects you want to use their contents as Z values.
-(Note: Any objects other than the text objects will be automatically filtered out from the selection.)
-At the Enter surface name prompt, type the name you want to assign to the created surface.
+        <h3>1.1. Text to TIN Surface</h3>
+        <p><strong>Command</strong>: TextToTinSurface</p>
+        <p>This command creates a TIN surface from text objects. The Z values of the created surface points match the numeric content values of the selected text objects.</p>
+        <p>After creating the surface, the selected text objects remain unchanged, and the created surface is independent of the selected text objects.</p>
+        <p>Following are the steps to use this command:</p>
+        <ol>
+            <li>From the ribbon, choose Z-Wizard tab ➪ Text Tools panel ➪ Text to TIN Surface (you can also type the command <code>TextToTinSurface</code> in the command bar).</li>
+            <li>At the <strong>Select objects</strong> prompt, select the text objects you want to use their contents as Z values.<br>
+            (Note: Any objects other than the text objects will be automatically filtered out from the selection.)</li>
+            <li>At the <strong>Enter surface name</strong> prompt, type the name you want to assign to the created surface.</li>
+        </ol>
 
-1.2. Text to COGO Point
-Command: TextToCOGOPoint
-This command creates COGO points at the locations of text objects. The Z values of the created points match the numeric content values of their corresponding text objects.
-After creating the points, the selected text objects remain unchanged, and the created points are independent of the selected text objects.
-Following are the steps to use this command:
-From the ribbon, choose Z-Wizard tab ➪ Text Tools panel ➪ Text to COGO Point (you can also type the command TextToCOGOPoint in the command bar).
-At the Select objects prompt, select the text objects you want to use their contents as Z values.
-(Note: Any objects other than the text objects will be automatically filtered out from the selection.)
-At the Enter description prompt, type the description you want to assign to the created point(s).
+        <h3>1.2. Text to COGO Point</h3>
+        <p><strong>Command</strong>: TextToCOGOPoint</p>
+        <p>This command creates COGO points at the locations of text objects. The Z values of the created points match the numeric content values of their corresponding text objects.</p>
+        <p>After creating the points, the selected text objects remain unchanged, and the created points are independent of the selected text objects.</p>
+        <p>Following are the steps to use this command:</p>
+        <ol>
+            <li>From the ribbon, choose Z-Wizard tab ➪ Text Tools panel ➪ Text to COGO Point (you can also type the command <code>TextToCOGOPoint</code> in the command bar).</li>
+            <li>At the <strong>Select objects</strong> prompt, select the text objects you want to use their contents as Z values.<br>
+            (Note: Any objects other than the text objects will be automatically filtered out from the selection.)</li>
+            <li>At the <strong>Enter description</strong> prompt, type the description you want to assign to the created point(s).</li>
+        </ol>
 
-1.3. Text to ACAD Point
-Command: TextToACADPoint
-This command creates AutoCAD point objects at the locations of text objects. The Z values of the created points match the numeric content values of their corresponding text objects.
-After creating the points, the selected text objects remain unchanged, and the created points are independent of the selected text objects.
-Following are the steps to use this command:
-From the ribbon, choose Z-Wizard tab ➪ Text Tools panel ➪ Text to ACAD Point (you can also type the command TextToACADPoint in the command bar).
-At the Select objects prompt, select the text objects you want to use their contents as Z values.
-(Note: Any objects other than the text objects will be automatically filtered out from the selection.)
+        <h3>1.3. Text to ACAD Point</h3>
+        <p><strong>Command</strong>: TextToACADPoint</p>
+        <p>This command creates AutoCAD point objects at the locations of text objects. The Z values of the created points match the numeric content values of their corresponding text objects.</p>
+        <p>After creating the points, the selected text objects remain unchanged, and the created points are independent of the selected text objects.</p>
+        <p>Following are the steps to use this command:</p>
+        <ol>
+            <li>From the ribbon, choose Z-Wizard tab ➪ Text Tools panel ➪ Text to ACAD Point (you can also type the command <code>TextToACADPoint</code> in the command bar).</li>
+            <li>At the <strong>Select objects</strong> prompt, select the text objects you want to use their contents as Z values.<br>
+            (Note: Any objects other than the text objects will be automatically filtered out from the selection.)</li>
+        </ol>
 
-2. Surface Tools
+        <h2>2. Surface Tools</h2>
 
-2.1. COGO Points from TIN Surface
-Command: COGOPointsFromTinSurface
-This command creates COGO points from the points of a TIN surface.
-After creating the COGO points, the selected surface remains unchanged, and the created COGO points are independent of the selected surface.
-Following are the steps to use this command:
-From the ribbon, choose Z-Wizard tab ➪ Surface Tools panel ➪ COGO Points from TIN Surface (you can also type the command COGOPointsFromTinSurface in the command bar).
-At the Enter description prompt, type the description you want to assign to the created points.
+        <h3>2.1. COGO Points from TIN Surface</h3>
+        <p><strong>Command</strong>: COGOPointsFromTinSurface</p>
+        <p>This command creates COGO points from the points of a TIN surface.</p>
+        <p>After creating the COGO points, the selected surface remains unchanged, and the created COGO points are independent of the selected surface.</p>
+        <p>Following are the steps to use this command:</p>
+        <ol>
+            <li>From the ribbon, choose Z-Wizard tab ➪ Surface Tools panel ➪ COGO Points from TIN Surface (you can also type the command <code>COGOPointsFromTinSurface</code> in the command bar).</li>
+            <li>At the <strong>Enter description</strong> prompt, type the description you want to assign to the created points.</li>
+        </ol>
 
-2.2. ACAD Points from TIN Surface
-Command: ACADPointsFromTinSurface
-This command creates AutoCAD point objects from the points of a TIN surface.
-After creating the point objects, the selected surface remains unchanged, and the created point objects are independent of the selected surface.
-Following is the step to use this command:
-From the ribbon, choose Z-Wizard tab ➪ Surface Tools panel ➪ ACAD Points from TIN Surface (you can also type the command ACADPointsFromTinSurface in the command bar).
-        </pre>
+        <h3>2.2. ACAD Points from TIN Surface</h3>
+        <p><strong>Command</strong>: ACADPointsFromTinSurface</p>
+        <p>This command creates AutoCAD point objects from the points of a TIN surface.</p>
+        <p>After creating the point objects, the selected surface remains unchanged, and the created point objects are independent of the selected surface.</p>
+        <p>Following is the step to use this command:</p>
+        <ol>
+            <li>From the ribbon, choose Z-Wizard tab ➪ Surface Tools panel ➪ ACAD Points from TIN Surface (you can also type the command <code>ACADPointsFromTinSurface</code> in the command bar).</li>
+        </ol>
     </main>
 
     <!-- footer -->
