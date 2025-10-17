@@ -1,6 +1,7 @@
 .docs-main {
     padding: 2rem 3rem;
     font-size: large;
+    color: #004687;
 }
 
 h2 {
@@ -12,5 +13,5 @@ pre {
 }
 
 strong {
-    color: #7B68EE;
+    color: #004687;
 }
