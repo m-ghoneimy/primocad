@@ -245,7 +245,7 @@
                 Duration Calculator
             </div>
 
-            <!-- Global Settings -->
+            <!-- global settings -->
             <div class="section">
                 <div class="section-title">
                     Global Settings
@@ -299,7 +299,7 @@
                 </div>
             </div>
 
-            <!-- Activity Data -->
+            <!-- activity data -->
             <div class="section">
                 <div class="section-title">
                     Activity Data
@@ -340,14 +340,14 @@
                 </div>
             </div>
 
-            <!-- Buttons -->
+            <!-- buttons -->
             <div class="button-group">
                 <button class="btn-calculate" id="calculateBtn">Calculate</button>
                 <button class="btn-edit" id="editBtn" disabled>Edit</button>
                 <button class="btn-help" onclick="window.location.href='duration-calculator-docs.html'">Help</button>
             </div>
 
-            <!-- Summary -->
+            <!-- summary -->
             <div class="summary-section" id="summarySection" style="display: none;">
                 <div class="section-title">Summary</div>
                 <div class="summary-item">
@@ -372,7 +372,7 @@
                 </div>
             </div>
 
-            <!-- Calculated Duration -->
+            <!-- calculated duration -->
             <div class="result-section" id="resultSection" style="display: none;">
                 <div class="result-label">Calculated Duration</div>
                 <div class="result-value" id="resultValue">-</div>
@@ -426,14 +426,14 @@
     <script src="assets/js/script.js"></script>
     
     <script>
-        // Get all DOM elements
+        // get all dom elements
         const calculateBtn = document.getElementById('calculateBtn');
         const editBtn = document.getElementById('editBtn');
         const resultSection = document.getElementById('resultSection');
         const summarySection = document.getElementById('summarySection');
         const resultValue = document.getElementById('resultValue');
 
-        // Input fields
+        // input fields
         const inputs = {
             quantityUnit: document.getElementById('quantityUnit'),
             timeUnit: document.getElementById('timeUnit'),
@@ -447,15 +447,15 @@
             customTimeUnit: document.getElementById('customTimeUnit')
         };
 
-        // Custom unit groups
+        // custom unit groups
         const customQuantityGroup = document.getElementById('customQuantityGroup');
         const customTimeGroup = document.getElementById('customTimeGroup');
 
-        // Label elements
+        // label elements
         const productionQuantityLabel = document.getElementById('productionQuantityLabel');
         const producerRateLabel = document.getElementById('producerRateLabel');
 
-        // Error message elements
+        // error message elements
         const errors = {
             quantity: document.getElementById('quantityError'),
             rate: document.getElementById('rateError'),
@@ -463,7 +463,7 @@
             efficiency: document.getElementById('efficiencyError')
         };
 
-        // Get current quantity unit (handles custom units)
+        // get current quantity unit (handles custom units)
         function getQuantityUnit() {
             if (inputs.quantityUnit.value === 'Custom') {
                 return inputs.customQuantityUnit.value.trim() || 'unit';
@@ -471,7 +471,7 @@
             return inputs.quantityUnit.value;
         }
 
-        // Get quantity unit label (short form for display)
+        // get quantity unit label (short form for display)
         function getQuantityUnitLabel() {
             const unit = inputs.quantityUnit.value;
             if (unit === 'Custom') {
@@ -487,7 +487,7 @@
             return labels[unit] || unit;
         }
 
-        // Get current time unit (handles custom units)
+        // get current time unit (handles custom units)
         function getTimeUnit() {
             if (inputs.timeUnit.value === 'Custom') {
                 return inputs.customTimeUnit.value.trim() || 'period';
@@ -495,24 +495,24 @@
             return inputs.timeUnit.value;
         }
 
-        // Get time unit label (lowercase for display)
+        // get time unit label (lowercase for display)
         function getTimeUnitLabel() {
             return getTimeUnit().toLowerCase();
         }
 
-        // Update all dynamic labels
+        // update all dynamic labels
         function updateLabels() {
             const quantityUnit = getQuantityUnit();
             const timeUnit = getTimeUnit();
             
-            // Update Production Quantity label
+            // update production quantity label
             productionQuantityLabel.textContent = `Production Quantity (${getQuantityUnitLabel()})`;
             
-            // Update Producer Rate label
+            // update producer rate label
             producerRateLabel.textContent = `Producer Rate (${getQuantityUnitLabel()}/${getTimeUnitLabel()} per producer)`;
         }
 
-        // Toggle custom quantity unit input
+        // toggle custom quantity unit input
         function toggleCustomQuantityUnit() {
             if (inputs.quantityUnit.value === 'Custom') {
                 customQuantityGroup.style.display = 'block';
@@ -522,7 +522,7 @@
             updateLabels();
         }
 
-        // Toggle custom time unit input
+        // toggle custom time unit input
         function toggleCustomTimeUnit() {
             if (inputs.timeUnit.value === 'Custom') {
                 customTimeGroup.style.display = 'block';
@@ -532,20 +532,20 @@
             updateLabels();
         }
 
-        // Initialize labels on page load
+        // initialize labels on page load
         updateLabels();
 
-        // Validation function
+        // validation function
         function validateInputs() {
             let isValid = true;
 
-            // Clear previous errors
+            // clear previous errors
             Object.values(errors).forEach(error => error.classList.remove('show'));
             Object.values(inputs).forEach(input => {
                 if (input.classList) input.classList.remove('error');
             });
 
-            // Validate production quantity
+            // validate production quantity
             const quantity = parseFloat(inputs.productionQuantity.value);
             if (isNaN(quantity) || quantity < 0.01) {
                 errors.quantity.classList.add('show');
@@ -553,7 +553,7 @@
                 isValid = false;
             }
 
-            // Validate producer rate
+            // validate producer rate
             const rate = parseFloat(inputs.producerRate.value);
             if (isNaN(rate) || rate < 0.01) {
                 errors.rate.classList.add('show');
@@ -561,7 +561,7 @@
                 isValid = false;
             }
 
-            // Validate number of producers
+            // validate number of producers
             const producers = parseFloat(inputs.numProducers.value);
             if (isNaN(producers) || producers < 0.01) {
                 errors.producers.classList.add('show');
@@ -569,7 +569,7 @@
                 isValid = false;
             }
 
-            // Validate efficiency
+            // validate efficiency
             const efficiency = parseFloat(inputs.efficiency.value);
             if (isNaN(efficiency) || efficiency < 0.01 || efficiency > 1) {
                 errors.efficiency.classList.add('show');
@@ -580,41 +580,41 @@
             return isValid;
         }
 
-        // Calculate duration
+        // calculate duration
         function calculateDuration() {
             if (!validateInputs()) {
                 return;
             }
 
-            // Get values
+            // get values
             const quantity = parseFloat(inputs.productionQuantity.value);
             const rate = parseFloat(inputs.producerRate.value);
             const producers = parseFloat(inputs.numProducers.value);
             const efficiency = parseFloat(inputs.efficiency.value);
             const decimals = parseInt(inputs.decimals.value);
 
-            // Calculate duration with selected decimal places
+            // calculate duration with selected decimal places
             const duration = quantity / (rate * producers * efficiency);
 
-            // Round duration based on decimal setting
+            // round duration based on decimal setting
             let roundedDuration;
             if (decimals === 0) {
-                // Always round up (ceiling) when decimals = 0
+                // always round up (ceiling) when decimals = 0
                 roundedDuration = Math.ceil(duration);
             } else {
                 roundedDuration = parseFloat(duration.toFixed(decimals));
             }
 
-            // Get unit labels
+            // get unit labels
             const quantityUnitLabel = getQuantityUnitLabel();
             const timeUnitLabel = getTimeUnitLabel();
 
-            // Display result with selected decimal precision
+            // display result with selected decimal precision
             const displayDuration = roundedDuration.toFixed(decimals);
             resultValue.textContent = `${displayDuration} ${timeUnitLabel}${parseFloat(displayDuration) !== 1 ? 's' : ''}`;
             resultSection.style.display = 'block';
 
-            // Update summary - always use 2 decimal places for inputs
+            // update summary - always use 2 decimal places for inputs
             document.getElementById('summaryName').textContent = inputs.activityName.value || 'N/A';
             document.getElementById('summaryQuantity').textContent = `${quantity.toFixed(2)} ${quantityUnitLabel}`;
             document.getElementById('summaryRate').textContent = `${rate.toFixed(2)} ${quantityUnitLabel}/${timeUnitLabel}`;
@@ -622,43 +622,43 @@
             document.getElementById('summaryEfficiency').textContent = `${(efficiency * 100).toFixed(2)}%`;
             summarySection.style.display = 'block';
 
-            // Toggle buttons
+            // toggle buttons
             calculateBtn.disabled = true;
             editBtn.disabled = false;
 
-            // Disable inputs
+            // disable inputs
             Object.values(inputs).forEach(input => input.disabled = true);
         }
 
-        // Edit data
+        // edit data
         function editData() {
-            // Hide results
+            // hide results
             resultSection.style.display = 'none';
             summarySection.style.display = 'none';
 
-            // Enable inputs
+            // enable inputs
             Object.values(inputs).forEach(input => input.disabled = false);
 
-            // Toggle buttons
+            // toggle buttons
             calculateBtn.disabled = false;
             editBtn.disabled = true;
 
-            // Clear errors
+            // clear errors
             Object.values(errors).forEach(error => error.classList.remove('show'));
             Object.values(inputs).forEach(input => {
                 if (input.classList) input.classList.remove('error');
             });
         }
 
-        // Event listeners
+        // event listeners
         calculateBtn.addEventListener('click', calculateDuration);
         editBtn.addEventListener('click', editData);
 
-        // Listen for unit changes
+        // listen for unit changes
         inputs.quantityUnit.addEventListener('change', toggleCustomQuantityUnit);
         inputs.timeUnit.addEventListener('change', toggleCustomTimeUnit);
         
-        // Update labels when custom units are typed
+        // update labels when custom units are typed
         inputs.customQuantityUnit.addEventListener('input', updateLabels);
         inputs.customTimeUnit.addEventListener('input', updateLabels);
     </script>

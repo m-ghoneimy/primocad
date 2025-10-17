@@ -327,7 +327,7 @@
         </div>
 
         <div class="scrollable-content">
-            <!-- Global Settings -->
+            <!-- global settings -->
             <div class="section">
                 <div class="form-group">
                     <label>Money Unit</label>
@@ -343,7 +343,7 @@
                 </div>
             </div>
 
-            <!-- Items Container -->
+            <!-- items container -->
             <div id="itemsContainer">
                 <!-- Empty state -->
                 <div class="empty-state" id="emptyState">
@@ -352,26 +352,26 @@
                 </div>
             </div>
 
-            <!-- Summary Section -->
+            <!-- summary section -->
             <div class="summary-section" id="summarySection" style="display: none;">
                 <div class="section-title">Summary</div>
                 <div id="summaryItems"></div>
             </div>
 
-            <!-- Result Section -->
+            <!-- result section -->
             <div class="result-section" id="resultSection" style="display: none;">
                 <div class="result-label">Calculated Total Cost</div>
                 <div class="result-value" id="resultValue">-</div>
             </div>
         </div>
 
-        <!-- Add Item -->
+        <!-- add item -->
         <div class="section">
             <button class="add-item-btn" id="addItemBtn">Add Item</button>
             <div class="error-message" id="itemError">Please add at least one item before calculating</div>
         </div>
 
-        <!-- Other Buttons -->
+        <!-- other buttons -->
         <div class="button-group">
             <button class="btn-calculate" id="calculateBtn">Calculate</button>
             <button class="btn-edit" id="editBtn" disabled>Edit</button>
@@ -427,12 +427,12 @@
     <script src="assets/js/script.js"></script>
 
     <script>
-        // State
+        // state
         let items = [];
         let itemIdCounter = 0;
         const MAX_ITEMS = 20;
 
-        // DOM elements
+        // dom elements
         const moneyUnitSelect = document.getElementById('moneyUnit');
         const customMoneyUnit = document.getElementById('customMoneyUnit');
         const customMoneyGroup = document.getElementById('customMoneyGroup');
@@ -446,7 +446,7 @@
         const summarySection = document.getElementById('summarySection');
         const summaryItems = document.getElementById('summaryItems');
 
-        // Get money unit
+        // get money unit
         function getMoneyUnit() {
             if (moneyUnitSelect.value === 'Custom') {
                 return customMoneyUnit.value.trim() || 'USD';
@@ -454,7 +454,7 @@
             return moneyUnitSelect.value;
         }
 
-        // Toggle custom money unit
+        // toggle custom money unit
         function toggleCustomMoneyUnit() {
             if (moneyUnitSelect.value === 'Custom') {
                 customMoneyGroup.style.display = 'block';
@@ -465,7 +465,7 @@
 
         moneyUnitSelect.addEventListener('change', toggleCustomMoneyUnit);
 
-        // Add item
+        // add item
         function addItem() {
             if (items.length >= MAX_ITEMS) {
                 alert(`Maximum of ${MAX_ITEMS} items allowed.`);
@@ -520,7 +520,7 @@
             updateAddItemButton();
         }
 
-        // Toggle cost fields based on cost type
+        // toggle cost fields based on cost type
         window.toggleCostFields = function(itemId) {
             const costType = document.getElementById(`costType-${itemId}`).value;
             const costRateGroup = document.getElementById(`costRateGroup-${itemId}`);
@@ -538,7 +538,7 @@
             }
         };
 
-        // Delete item
+        // delete item
         window.deleteItem = function(itemId) {
             const index = items.indexOf(itemId);
             if (index > -1) {
@@ -556,7 +556,7 @@
             }
         };
 
-        // Renumber items
+        // renumber items
         function renumberItems() {
             items.forEach((itemId, index) => {
                 const itemCard = document.getElementById(`item-${itemId}`);
@@ -565,7 +565,7 @@
             });
         }
 
-        // Update add item button state
+        // update add item button state
         function updateAddItemButton() {
             if (items.length >= MAX_ITEMS) {
                 addItemBtn.disabled = true;
@@ -574,7 +574,7 @@
             }
         }
 
-        // Calculate cost
+        // calculate cost
         function calculateCost() {
             if (items.length === 0) {
                 document.getElementById('itemError').style.display = "block";
@@ -585,7 +585,7 @@
             const itemCosts = [];
             const moneyUnit = getMoneyUnit();
 
-            // Calculate each item
+            // calculate each item
             for (const itemId of items) {
                 const name = document.getElementById(`name-${itemId}`).value || `Item ${items.indexOf(itemId) + 1}`;
                 const costType = document.getElementById(`costType-${itemId}`).value;
@@ -606,11 +606,11 @@
                 itemCosts.push({ name, cost: itemCost });
             }
 
-            // Display result
+            // display result
             resultValue.textContent = `${totalCost.toFixed(2)} ${moneyUnit}`;
             resultSection.style.display = 'block';
 
-            // Display summary
+            // display summary
             summaryItems.innerHTML = '';
             itemCosts.forEach(item => {
                 const summaryItem = document.createElement('div');
@@ -623,13 +623,13 @@
             });
             summarySection.style.display = 'block';
 
-            // Disable inputs and buttons
+            // disable inputs and buttons
             disableAllInputs();
             calculateBtn.disabled = true;
             editBtn.disabled = false;
         }
 
-        // Edit data
+        // edit data
         function editData() {
             enableAllInputs();
             calculateBtn.disabled = false;
@@ -638,7 +638,7 @@
             summarySection.style.display = 'none';
         }
 
-        // Disable all inputs
+        // disable all inputs
         function disableAllInputs() {
             moneyUnitSelect.disabled = true;
             customMoneyUnit.disabled = true;
@@ -663,7 +663,7 @@
             });
         }
 
-        // Enable all inputs
+        // enable all inputs
         function enableAllInputs() {
             moneyUnitSelect.disabled = false;
             customMoneyUnit.disabled = false;
@@ -688,7 +688,7 @@
             });
         }
 
-        // Event listeners
+        // event listeners
         addItemBtn.addEventListener('click', addItem);
         calculateBtn.addEventListener('click', calculateCost);
         editBtn.addEventListener('click', editData);

@@ -1,4 +1,4 @@
-// 导航栏滚动效果
+// navigation bar scrolling
 window.addEventListener('scroll', function() {
     const navbar = document.getElementById('navbar');
     if (window.scrollY > 50) {
@@ -8,7 +8,7 @@ window.addEventListener('scroll', function() {
     }
 });
 
-// 平滑滚动
+// smooth scrolling
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -25,7 +25,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// 移动菜单切换
+// mobile menu toggle
 const mobileMenuBtn = document.getElementById('mobile-menu-btn');
 const navLinks = document.querySelector('.nav-links');
 
@@ -45,7 +45,7 @@ mobileMenuBtn.addEventListener('click', function() {
     }
 });
 
-// 滚动动画
+// scrolling animation
 const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -50px 0px'
@@ -59,12 +59,12 @@ const observer = new IntersectionObserver(function(entries) {
     });
 }, observerOptions);
 
-// 观察所有卡片元素
+// observe all card elements
 document.querySelectorAll('.feature-card, .use-case-card, .testimonial-card, .faq-item').forEach(card => {
     observer.observe(card);
 });
 
-// FAQ 折叠效果
+// faq folding
 const faqQuestions = document.querySelectorAll('.faq-question');
 
 faqQuestions.forEach(question => {
@@ -72,13 +72,13 @@ faqQuestions.forEach(question => {
         const answer = question.nextElementSibling;
         const isActive = question.classList.contains('active');
         
-        // 关闭所有FAQ
+        // close all faq
         faqQuestions.forEach(q => {
             q.classList.remove('active');
             q.nextElementSibling.classList.remove('active');
         });
         
-        // 如果当前FAQ未激活，则激活它
+        // If the faq is not currently active, activate it
         if (!isActive) {
             question.classList.add('active');
             answer.classList.add('active');
@@ -86,7 +86,7 @@ faqQuestions.forEach(question => {
     });
 });
 
-// 表单提交处理（如果有表单）
+// form submission processing (if there is a form)
 /*const ctaButton = document.querySelector('.cta-button');
 const productCta = document.querySelector('.product-cta');
 const productSecondaryCta = document.querySelector('.product-secondary-cta');
@@ -96,13 +96,13 @@ const navCta = document.querySelector('.nav-cta');
     if (button) {
         button.addEventListener('click', function(e) {
             e.preventDefault();
-            // 这里可以添加注册或登录的逻辑
-            alert('感谢您的兴趣！注册功能即将推出，敬请期待。');
+            // you can add registration or login logic here
+            alert('Thank you for your interest! Registration is coming soon, so stay tuned.');
         });
     }
 });*/
 
-// 页面加载完成后的动画
+// animation after page loading is complete
 window.addEventListener('load', function() {
     document.querySelector('.hero-container').classList.add('fade-in');
 });
