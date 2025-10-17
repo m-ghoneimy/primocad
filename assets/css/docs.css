@@ -1,17 +1,18 @@
 .docs-main {
     padding: 2rem 3rem;
     font-size: large;
-    color: #004687;
+    color: #003153;
 }
 
 h2 {
     color: #4285f4;
+    margin: 1rem;
+}
+
+h3 {
+    color: #004687
 }
 
 pre {
     color: green;
-}
-
-strong {
-    color: #004687;
 }
