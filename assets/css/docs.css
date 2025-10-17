@@ -2,7 +2,6 @@
     padding: 2rem 3rem;
     font-size: large;
     color: #004687;
-    border-collapse: collapse;
 }
 
 h1 {
@@ -21,4 +20,8 @@ h3 {
 
 pre {
     color: green;
+}
+
+table {
+    border-collapse: collapse;
 }
