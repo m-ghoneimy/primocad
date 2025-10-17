@@ -3,6 +3,10 @@
     font-size: large;
 }
 
+h2 {
+    color: blue;
+}
+
 pre {
     color: green;
 }
