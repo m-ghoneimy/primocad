@@ -4,28 +4,28 @@
     color: #004687;
 }
 
-h1 {
+.docs-main h1 {
     margin: 0 0 0 -1rem;
 }
 
-h2 {
+.docs-main h2 {
     color: #2a52be;
     margin: 1rem 0 1rem -1rem;
 }
 
-h3 {
+.docs-main h3 {
     color: #4285f4;
     margin: 1rem 0 1rem 0;
 }
 
-pre {
+.docs-main pre {
     color: green;
 }
 
-table {
+.docs-main table {
     border-collapse: collapse;
 }
 
-th, td {
+.docs-main th, td {
     padding: 0.1rem;
 }
